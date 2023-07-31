@@ -1,3 +1,6 @@
 from django.contrib import admin
+from vazou_app.models import *
 
-# Register your models here.
+admin.site.register(Empresa)
+admin.site.register(Noticia)
+admin.site.register(Denuncia)
