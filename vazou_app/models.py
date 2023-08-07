@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.db import models
 from django.utils import timezone
 
@@ -56,6 +57,7 @@ class Denuncia(models.Model):
    title = models.CharField('Título da denúncia', max_length=200, unique=True)
    name_company = models.CharField('Nome da empresa', max_length=50)
    text = models.TextField('Texto', max_length=3000)
+   dateTime = models.DateTimeField('Data e hora', default=datetime.now, blank=True)
 
    class Meta:
       db_table = 'denuncia'
