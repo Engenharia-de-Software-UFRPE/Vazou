@@ -1,6 +1,6 @@
 
 export default function About(){
     return (
-        <div>Sobre nós</div>
+        <div  className='flex min-h-screen'>Sobre nós</div>
     )
 }

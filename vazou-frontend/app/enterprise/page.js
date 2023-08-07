@@ -3,7 +3,7 @@
 export default function Enterprise(){
 
     return (
-        <div>
+        <div  className='flex min-h-screen'>
             Empresa
         </div>
     )
