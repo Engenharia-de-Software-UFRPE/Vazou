@@ -13,7 +13,6 @@ class Empresa(models.Model):
     C6 = 'Financeiro'
     C7 = 'Entretenimento'
 
-
     CATEGORY = [
        (C1, 'Moda'),
        (C2, 'Alimentos'),
