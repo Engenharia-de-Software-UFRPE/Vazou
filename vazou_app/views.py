@@ -1,20 +1,33 @@
+from rest_framework import generics
 import json
+from .models import *
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseBadRequest
-
 from .models import *
 
+
 # Create your views here.
+class ListaEmpresa(generics.ListCreateAPIView):
+    listaEmp = Empresa.objects.all()
+    serializer_class = EmpresaSerializer
+
+    def get_object(self):
+        return self.listaEmp.get(pk=id)
+    
+    def get_categoria(self):
+        return self.listaEmp.filter(Empresa.categoria)
+
+
 def index(request):
     return HttpResponse("Hello, world. You're at the index.")
 
 def rec_report(request):
     if request.method == 'POST':
-        report = json.loads(request.body)
+        report_data = json.loads(request.body)
 
-        denuncia = Denuncia.objects.create(title = report['title'],
-                                            name_company = report['name_company'],
-                                            text = report['text'])
+        denuncia = Denuncia.objects.create(title = report_data['title'],
+                                            name_company = report_data['name_company'],
+                                            text = report_data['text'])
         
         denuncia.save()
         return HttpResponse(status=201)
@@ -24,11 +37,11 @@ def rec_report(request):
 # Necessário configuração de login (validação)
 def rec_noticia(request):
     if request.method == 'POST':
-        report = json.loads(request.body)
+        news_data = json.loads(request.body)
 
-        noticia = Noticia.objects.create(title = report['title'],
-                                            subtitle = report['subtitle'],
-                                            text = report['text'])
+        noticia = Noticia.objects.create(title = news_data['title'],
+                                            name_company = news_data['name_company'],
+                                            text = news_data['text'])
         
         noticia.save()
         return HttpResponse(status=201)
