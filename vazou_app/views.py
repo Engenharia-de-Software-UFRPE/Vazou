@@ -15,18 +15,21 @@ class ListaEmpresa(generics.ListCreateAPIView):
     
     def get_categoria(self):
         return self.listaEmp.filter(Empresa.categoria)
+        
+    def get_selo(self):
+        return self.listaEmp.filter(Empresa.score)
     
     def get_more_score_emp(self):
         queryset = self.listaEmp.order_by('-score')
         serializer = self.serializer_class(queryset, many=True)
         return serializer.data
 
-class ListaNoticia(generics.ListCreateAPIView):
+class ListaNoticias(generics.ListCreateAPIView):
     listaNot = Noticia.objects.all()
     serializer_class = NoticiaSerializer
-    
+
     def get_object(self):
-        return self.listaEmp.get(pk=id)
+        return self.listaNot.get(pk=id)
     
     def get_one_recent_not(self):
         queryset = self.listaNot.order_by('-creation_date').first()
