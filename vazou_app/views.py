@@ -5,7 +5,6 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseBadRequest
 from .models import *
 
-
 # Create your views here.
 class ListaEmpresa(generics.ListCreateAPIView):
     listaEmp = Empresa.objects.all()
@@ -16,10 +15,14 @@ class ListaEmpresa(generics.ListCreateAPIView):
     
     def get_categoria(self):
         return self.listaEmp.filter(Empresa.categoria)
-    
+        
     def get_selo(self):
         return self.listaEmp.filter(Empresa.score)
     
+    def get_more_score_emp(self):
+        queryset = self.listaEmp.order_by('-score')
+        serializer = self.serializer_class(queryset, many=True)
+        return serializer.data
 
 class ListaNoticias(generics.ListCreateAPIView):
     listaNot = Noticia.objects.all()
@@ -28,8 +31,17 @@ class ListaNoticias(generics.ListCreateAPIView):
     def get_object(self):
         return self.listaNot.get(pk=id)
     
-
-
+    def get_one_recent_not(self):
+        queryset = self.listaNot.order_by('-creation_date').first()
+        serializer = self.serializer_class(queryset, many=True)
+        return serializer.data
+    
+    def get_recents_not(self):
+        queryset = self.listaNot.order_by('-creation_date')
+        serializer = self.serializer_class(queryset, many=True)
+        return serializer.data
+    
+    
 def index(request):
     return HttpResponse("Hello, world. You're at the index.")
 
