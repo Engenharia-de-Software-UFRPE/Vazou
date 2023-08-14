@@ -16,6 +16,18 @@ class ListaEmpresa(generics.ListCreateAPIView):
     
     def get_categoria(self):
         return self.listaEmp.filter(Empresa.categoria)
+    
+    def get_selo(self):
+        return self.listaEmp.filter(Empresa.score)
+    
+
+class ListaNoticias(generics.ListCreateAPIView):
+    listaNot = Noticia.objects.all()
+    serializer_class = NoticiaSerializer
+
+    def get_object(self):
+        return self.listaNot.get(pk=id)
+    
 
 
 def index(request):
