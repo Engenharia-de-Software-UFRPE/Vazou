@@ -4,6 +4,7 @@ from .models import *
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseBadRequest
 from .models import *
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 class ListaEmpresa(generics.ListCreateAPIView):
@@ -54,20 +55,24 @@ def rec_report(request):
                                             text = report_data['text'])
         
         denuncia.save()
-        return HttpResponse(status=201)
+        return HttpResponse("Denuncia criada com sucesso",status=201)
     
     return HttpResponseBadRequest()
 
 # Necessário configuração de login (validação)
+@csrf_exempt
 def rec_noticia(request):
     if request.method == 'POST':
         news_data = json.loads(request.body)
-
+        if 'id' in news_data:
+            empresa = Empresa.objects.get(pk=news_data['id'])
+        
         noticia = Noticia.objects.create(title = news_data['title'],
-                                            name_company = news_data['name_company'],
-                                            text = news_data['text'])
+                                            subtitle = news_data['subtitle'],
+                                            text = news_data['text'],
+                                            company = empresa)
         
         noticia.save()
-        return HttpResponse(status=201)
+        return HttpResponse("Noticia criada com sucesso", status=201)
     
     return HttpResponseBadRequest()

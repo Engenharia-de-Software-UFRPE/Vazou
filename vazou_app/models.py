@@ -36,12 +36,12 @@ class Empresa(models.Model):
 
 class Noticia(models.Model):
     
-    title = models.TextField('Título', max_length=120, unique=True)
-    subtitle = models.TextField('Subtítulo', max_length=200, unique=True)
+    title = models.TextField('Título', max_length=120)
+    subtitle = models.TextField('Subtítulo', max_length=200)
     text = models.TextField('Texto', max_length=3000)
     creation_date = models.DateTimeField('Data de criação', default=timezone.now)
     edit_date = models.DateTimeField('Última edição', default=timezone.now)
-    company = models.ForeignKey(Empresa, on_delete=models.CASCADE, related_name='noticias_empresa')
+    company = models.ForeignKey(Empresa, on_delete=models.CASCADE, related_name='noticias_empresa', null = True)
     # ImagemTopo
     # ImagemTexto
 
@@ -50,20 +50,20 @@ class Noticia(models.Model):
 
 class Denuncia(models.Model):
    
-   title = models.CharField('Título da denúncia', max_length=200, unique=True)
+   title = models.CharField('Título da denúncia', max_length=200)
    name_company = models.CharField('Nome da empresa', max_length=50)
    text = models.TextField('Texto', max_length=3000)
    dateTime = models.DateTimeField('Data e hora', default=datetime.now, blank=True)
-   company = models.ForeignKey(Empresa, on_delete=models.CASCADE, related_name='acoes_empresa')
 
    class Meta:
       db_table = 'denuncia'
 
 class Acao(models.Model):
    
-   title = models.CharField('Título da ação', max_length=200, unique=True)
+   title = models.CharField('Título da ação', max_length=200)
    text = models.TextField('Texto', max_length=3000)
    dateTime = models.DateTimeField('Data e hora', default=datetime.now, blank=True)
+   company = models.ForeignKey(Empresa, on_delete=models.CASCADE, related_name='acoes_empresa', null = True)
 
    class Meta:
       db_table = 'acao'
