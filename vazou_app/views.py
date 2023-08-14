@@ -41,6 +41,7 @@ class ListaNoticias(generics.ListCreateAPIView):
         serializer = self.serializer_class(queryset, many=True)
         return serializer.data
     
+    
 def index(request):
     return HttpResponse("Hello, world. You're at the index.")
 
