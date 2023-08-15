@@ -16,11 +16,15 @@ export default function Form(){
         setEmail("")
         setAssunto("")
         setDescrip("")
-        if (nome !== "" && email !== "" && assunto !== "" && descrip !== "") {
+        if (assunto !== "" && descrip !== "") {
             setIsBlankFilled ("showSuccess")
         } else{
             setIsBlankFilled("showFail")
         }
+    }
+
+    function closeModal (setModalClosed) {
+        setModalClosed ("notShow")
     }
 
     return (
@@ -35,7 +39,7 @@ export default function Form(){
             <Button onClickFunction={() => submitForm()} backgroundColor={'bg-black'}>
                 Enviar
             </Button>
-            {isBlankFilled === "showSuccess" ? <Modal setModalClosed={setIsBlankFilled} title={"Denúncia feita com sucesso!"} leftButtonText={"Ok"}></Modal> : isBlankFilled === "showFail" ? <Modal setModalClosed={setIsBlankFilled} title={"Nem todos os campos foram preenchidos!"} leftButtonText={"Ok"}></Modal> : ""}
+            {isBlankFilled === "showSuccess" ? <Modal leftButtonAction={() => closeModal(setIsBlankFilled)} title={"Denúncia feita com sucesso!"} leftButtonText={"Ok"}></Modal> : isBlankFilled === "showFail" ? <Modal leftButtonAction={() => closeModal(setIsBlankFilled)} title={"Nem todos os campos foram preenchidos!"} leftButtonText={"Ok"}></Modal> : ""}
         </div>
     )
 }
