@@ -2,9 +2,10 @@ from rest_framework import generics
 import json
 from .models import *
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse
 from .models import *
 from django.views.decorators.csrf import csrf_exempt
+from django.core.mail import send_mail
 
 # Create your views here.
 class ListaEmpresa(generics.ListCreateAPIView):
@@ -46,6 +47,7 @@ class ListaNoticias(generics.ListCreateAPIView):
 def index(request):
     return HttpResponse("Hello, world. You're at the index.")
 
+@csrf_exempt
 def rec_report(request):
     if request.method == 'POST':
         report_data = json.loads(request.body)
@@ -76,3 +78,21 @@ def rec_noticia(request):
         return HttpResponse("Noticia criada com sucesso", status=201)
     
     return HttpResponseBadRequest()
+
+@csrf_exempt
+def send_email(request):
+    if request.method == 'POST':
+        data = json.loads(request.body.decode('utf-8'))
+        name = data.get('name')
+        email = data.get('email')
+        subject = data.get('subject')
+        message = data.get('message')
+        receiver = data.get('receiver', [])
+
+        if name and subject and message and email and receiver:
+            send_mail(subject, f"Nome: {name}\nEmail: {email}\n\n{message}", email, receiver)
+            return JsonResponse({'status': 'Email enviado com sucesso.'})
+        else:
+            return JsonResponse({'error': 'Dados incompletos ou inválidos.'}, status=400)
+
+    return JsonResponse({'error': 'Método não permitido.'}, status=405)
