@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Input from './input'
 import Button from './button'
+import Modal from './modal'
 
 export default function Form(){
 
@@ -8,7 +9,23 @@ export default function Form(){
     const [email,setEmail] = useState("")
     const [assunto, setAssunto] = useState("")
     const [descrip, setDescrip] = useState("")
+    const [isBlankFilled, setIsBlankFilled] = useState("notShow")
 
+    function submitForm () {
+        setNome("")
+        setEmail("")
+        setAssunto("")
+        setDescrip("")
+        if (assunto !== "" && descrip !== "") {
+            setIsBlankFilled ("showSuccess")
+        } else{
+            setIsBlankFilled("showFail")
+        }
+    }
+
+    function closeModal (setModalClosed) {
+        setModalClosed ("notShow")
+    }
 
     return (
         <div className=' flex flex-col items-center mx-auto font-poppins'>
@@ -19,9 +36,10 @@ export default function Form(){
                 <h4 className=" mr-auto font-semibold">Descrição</h4>
                 <textarea className=' border-[2px] border-black rounded shadow p-2 w-[580px] h-[180px]' placeholder='Descrição'  value={descrip} onChange={(e)=> setDescrip(e.target.value)}></textarea> 
             </div>
-            <Button>
+            <Button onClickFunction={() => submitForm()} backgroundColor={'bg-black'}>
                 Enviar
             </Button>
+            {isBlankFilled === "showSuccess" ? <Modal leftButtonAction={() => closeModal(setIsBlankFilled)} title={"Denúncia feita com sucesso!"} leftButtonText={"Ok"}></Modal> : isBlankFilled === "showFail" ? <Modal leftButtonAction={() => closeModal(setIsBlankFilled)} title={"Nem todos os campos foram preenchidos!"} leftButtonText={"Ok"}></Modal> : ""}
         </div>
     )
 }
