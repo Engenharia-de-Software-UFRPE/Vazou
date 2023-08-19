@@ -1,11 +1,10 @@
 'use client'
+import Form from './components/form'
 
 import Image from "next/image"
 import CardEnterprise from "./components/cardEnterprise"
 
 export default function Home() {
-
-
   return (
     <main className='flex min-h-screen font-poppins'>
 
@@ -73,7 +72,7 @@ export default function Home() {
           {/* Ranking - Fim */}
 
 
-
+          <Form/>
         </div>
       </div>
 
