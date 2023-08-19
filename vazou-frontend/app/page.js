@@ -3,13 +3,22 @@ import Form from './components/form'
 
 import Image from "next/image"
 import CardEnterprise from "./components/cardEnterprise"
+import Button from './components/button'
+import { useRouter } from 'next/navigation'
+import RankingSection from './components/rankingSection'
 
 export default function Home() {
-  return (
-    <main className='flex min-h-screen font-poppins'>
 
-      {/* Notícia principal - Início */}
+
+  const router = useRouter();
+
+
+  return (
+    <main className='flex min-h-screen font-poppins bg-white'>
+
+      
       <div>
+        {/* Notícia principal - Início */}
         <div className="h-[25rem]">
           <div className={`relative h-96 w-[94.9rem] -inset-y-2 z-0`}>
             <Image src="/home/home_image.png" fill />
@@ -24,9 +33,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-      
-      {/* Notícia principal - Fim */}
+        {/* Notícia principal - Fim */}
       
         <div className="flex flex-col ml-80">
 
@@ -56,7 +63,7 @@ export default function Home() {
 
           {/* Ranking - Início */}
 
-          <div className="text-orange-500 text-2xl font-black mt-10 mb-2">
+          <div className="text-orange-500 text-2xl font-extrabold mt-10 mb-2">
             Ranking
           </div>
 
@@ -68,14 +75,88 @@ export default function Home() {
 
           <CardEnterprise />
 
-
+          <div className='flex justify-center w-[56rem] mb-10'>
+            <Button 
+              children={"Ver mais"}
+              backgroundColor={"bg-black"}
+              onClickFunction={() => router.push('/enterprise')}
+            />
+          </div>
           {/* Ranking - Fim */}
 
-
-          <Form/>
         </div>
-      </div>
 
+        {/* Sobre - Inicio */}
+        <div className='flex  bg-orange-500 px-80 py-10 text-gray-200'>
+          <div className='w-[33rem] py-10'>
+            <div className='font-extrabold text-4xl mb-5'>
+              Um pouco sobre o VAZOU
+            </div>
+            <div className=' font-semibold text-lg'>
+              Desenvolvedores
+            </div>
+            <div className='mb-2'>
+              Aqueles por de trás do projeto
+            </div>
+            <div className='text-sm text-justify w-[27rem]'>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            </div>
+          </div>
+          <div className='flex flex-col'>
+            <Image 
+              src={"/home/about1.png"}
+              width={298}
+              height={160}
+            />
+
+            <Image 
+              src={"/home/about2.png"}
+              width={298}
+              height={160}
+            />
+          </div>
+        </div>
+        {/* Sobre - Fim */}
+        
+        {/* Metodologia - Inicio */}
+        <div className='flex bg-black px-80 py-14 text-gray-200'>
+          <div className='w-[32rem]'>
+            <div className='font-bold text-2xl mb-4'>
+              Metodologia
+            </div>
+            <div className='text-xl mb-4'>
+              Como fazemos as coisas no VAZOU
+            </div>
+            <div className='w-[29rem] text-md'>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </div>
+          </div>
+          <div className='ml-4'>
+              <RankingSection imageName={"/ranking_icons/Great.png"} type={"Great"} />
+              <RankingSection imageName={"/ranking_icons/Atention.png"} type={"Atention"} />
+              <RankingSection imageName={"/ranking_icons/Alert.png"} type={"Alert"} />
+              <RankingSection imageName={"/ranking_icons/Danger.png"} type={"Danger"} />
+            </div>
+
+        </div>
+        {/* Metodoloia - Fim */}
+
+
+        {/* Denuncia - Inicio */}
+        <div className='py-20'>
+          <div className='px-80 mb-10'>
+            <div className='font-black text-4xl mb-1'>
+              Faça sua denúncia aqui
+            </div>
+            <div className='font-bold text-2xl'>
+              Descreva o caso de vazamento ou uso indevido de dados privados
+            </div>
+          </div>
+          <Form/>
+        
+        </div>
+        {/* Denuncia - Fim */}
+      </div>
     </main>
   )
 }
