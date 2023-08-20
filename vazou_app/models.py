@@ -32,6 +32,8 @@ class Empresa(models.Model):
 
    class Meta:
       db_table = 'empresa'
+   def __str__(self):
+      return self.tradeName
 
 class Noticia(models.Model):
     
@@ -59,7 +61,7 @@ class Denuncia(models.Model):
       db_table = 'denuncia'
 
 class Acao(models.Model):
-   
+
    title = models.CharField('Título da ação', max_length=200)
    text = models.TextField('Texto', max_length=3000)
    dateTime = models.DateTimeField('Data e hora', default=datetime.now, blank=True)
