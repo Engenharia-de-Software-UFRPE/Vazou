@@ -14,8 +14,8 @@ urlpatterns = [
     #path('empresa/update/<str:pk>', views.UpdateEmpresa.as_view(), name='UpdateEmpresa'),
 
     path('acoes/', views.ListaAcoes.as_view(), name='ListaAcoes'),
-    path('create/acoes', views.CreateAcao.as_view(), name='CreateAcao'),
-    path('acoes/<str:company>', views.AcoesEmpresa, name='AcoesEmpresa'),
+    path('acao/criar', views.CreateAcao.as_view(), name='CreateAcao'),
+    path('acoes/<int:pk>', views.DeleteUpdateAcao.as_view(), name="DeleteUpdateAcao"),
 
 
     path('noticias/', views.ListaNoticia.as_view(), name='ListaNoticia'),

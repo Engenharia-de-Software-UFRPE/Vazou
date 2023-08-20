@@ -39,14 +39,6 @@ class CreateEmpresa(generics.CreateAPIView):
     serializer_class = EmpresaSerializer
     permission_classes = [IsAdminUser] 
 
-# class UpdateEmpresa(generics.UpdateAPIView):
-#     queryset = Empresa.objects.all()
-#     serializer_class = EmpresaSerializer
-#     #permission_classes = [IsAdminUser] 
-
-#     lookup_field = 'pk'
-#     def perform_update(self, serializer):
-#         instance = serializer.save()
 
 class ListaNoticia(generics.ListAPIView):
     queryset = Noticia.objects.all()
@@ -71,12 +63,6 @@ class ListaAcoes(generics.ListAPIView):
     queryset = Acao.objects.all()
     serializer_class = AcaoSerializer
 
-
-class CreateAcao(generics.CreateAPIView):
-    querystet = Acao.objects.all()
-    serializer_class = AcaoSerializer
-    permission_classes = [IsAuthenticated]
-
     def list(self, request):
         req = self.request
         comp = req.query_params.get('company', None)
@@ -87,11 +73,19 @@ class CreateAcao(generics.CreateAPIView):
         serializer = AcaoSerializer(queryset, many = True)
         return Response(serializer.data)
 
-@api_view(['GET'])
-def AcoesEmpresa(request, company):
-    acoes = Acao.objects.filter(company=company)
-    serializer = AcaoSerializer(acoes, many=True)
-    return Response(serializer.data)
+
+class CreateAcao(generics.CreateAPIView):
+    querystet = Acao.objects.all()
+    serializer_class = AcaoSerializer
+    permission_classes = [IsAuthenticated]
+
+    
+class DeleteUpdateAcao(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = AcaoSerializer
+    queryset = Acao.objects.all()
+    permission_classes = [IsAuthenticated]
+    
+        
 
 @csrf_exempt
 def rec_report(request):
