@@ -9,6 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import send_mail
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
+from rest_framework.decorators import api_view
 
 # Create your views here.
 class ListaEmpresa(generics.ListAPIView):
@@ -24,12 +25,28 @@ class ListaEmpresa(generics.ListAPIView):
             queryset = Empresa.objects.filter(categoria = categ)
         serializer = EmpresaSerializer(queryset, many = True)
         return Response(serializer.data)
-        
+
+#View de cada empresa por id
+@api_view(['GET'])    
+def empresaDetail(request, pk):
+        empresa = Empresa.objects.get(id=pk)
+        serializer = EmpresaSerializer(empresa, many=False)
+        return Response(serializer.data)
+
 
 class CreateEmpresa(generics.CreateAPIView):
     queryset = Empresa.objects.all()
     serializer_class = EmpresaSerializer
     permission_classes = [IsAdminUser] 
+
+# class UpdateEmpresa(generics.UpdateAPIView):
+#     queryset = Empresa.objects.all()
+#     serializer_class = EmpresaSerializer
+#     #permission_classes = [IsAdminUser] 
+
+#     lookup_field = 'pk'
+#     def perform_update(self, serializer):
+#         instance = serializer.save()
 
 class ListaNoticia(generics.ListAPIView):
     queryset = Noticia.objects.all()
@@ -49,7 +66,33 @@ class ListaDenuncia(generics.ListCreateAPIView):
 
     def get_object(self):
         return self.listaNot.get(pk=id)
-    
+
+class ListaAcoes(generics.ListAPIView):
+    queryset = Acao.objects.all()
+    serializer_class = AcaoSerializer
+
+
+class CreateAcao(generics.CreateAPIView):
+    querystet = Acao.objects.all()
+    serializer_class = AcaoSerializer
+    permission_classes = [IsAuthenticated]
+
+    def list(self, request):
+        req = self.request
+        comp = req.query_params.get('company', None)
+        queryset = Acao.objects.all()
+
+        if comp:
+            queryset = Acao.objects.filter(company = comp)
+        serializer = AcaoSerializer(queryset, many = True)
+        return Response(serializer.data)
+
+@api_view(['GET'])
+def AcoesEmpresa(request, company):
+    acoes = Acao.objects.filter(company=company)
+    serializer = AcaoSerializer(acoes, many=True)
+    return Response(serializer.data)
+
 @csrf_exempt
 def rec_report(request):
     if request.method == 'POST':

@@ -10,6 +10,12 @@ urlpatterns = [
 
     path('empresas/', views.ListaEmpresa.as_view(), name='ListaEmpresa'),
     path('empresa/criar', views.CreateEmpresa.as_view(), name='CreateEmpresa'),
+    path('empresa/<str:pk>', views.empresaDetail, name='Empresa'),
+    #path('empresa/update/<str:pk>', views.UpdateEmpresa.as_view(), name='UpdateEmpresa'),
+
+    path('acoes/', views.ListaAcoes.as_view(), name='ListaAcoes'),
+    path('create/acoes', views.CreateAcao.as_view(), name='CreateAcao'),
+    path('acoes/<str:company>', views.AcoesEmpresa, name='AcoesEmpresa'),
 
 
     path('noticias/', views.ListaNoticia.as_view(), name='ListaNoticia'),
