@@ -20,7 +20,6 @@ class DenunciaSerializer(serializers.ModelSerializer):
       fields = '__all__'
 
 class AcaoSerializer(serializers.ModelSerializer):
-    company = EmpresaSerializer()
     
     class Meta:
       model = Acao

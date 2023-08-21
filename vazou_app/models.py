@@ -32,6 +32,8 @@ class Empresa(models.Model):
 
    class Meta:
       db_table = 'empresa'
+   def __str__(self):
+      return self.tradeName
 
 class Noticia(models.Model):
     
@@ -52,17 +54,17 @@ class Denuncia(models.Model):
    title = models.CharField('Título da denúncia', max_length=200)
    name_company = models.CharField('Nome da empresa', max_length=50)
    text = models.TextField('Texto', max_length=3000)
-   dateTime = models.DateTimeField('Data e hora', default=datetime.now, blank=True)
+   dateTime = models.DateTimeField('Data e hora', default=timezone.now, blank=True)
    status = models.BooleanField(default=False)
 
    class Meta:
       db_table = 'denuncia'
 
 class Acao(models.Model):
-   
+
    title = models.CharField('Título da ação', max_length=200)
    text = models.TextField('Texto', max_length=3000)
-   dateTime = models.DateTimeField('Data e hora', default=datetime.now, blank=True)
+   dateTime = models.DateTimeField('Data e hora', default=timezone.now, blank=True)
    company = models.ForeignKey(Empresa, on_delete=models.CASCADE, related_name='acoes_empresa', null = True)
 
    class Meta:

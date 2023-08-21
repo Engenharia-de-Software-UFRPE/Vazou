@@ -5,12 +5,17 @@ from . import views
 
 urlpatterns = [
     #path('admin/', admin.site.urls),
-    path('accounts/login/', admin.site.urls),
+    #path('accounts/login/', admin.site.urls),
     path('', views.index, name='index'),
 
     path('empresas/', views.ListaEmpresa.as_view(), name='ListaEmpresa'),
     path('empresa/criar', views.CreateEmpresa.as_view(), name='CreateEmpresa'),
+    path('empresa/<str:pk>', views.empresaDetail, name='Empresa'),
+    #path('empresa/update/<str:pk>', views.UpdateEmpresa.as_view(), name='UpdateEmpresa'),
 
+    path('acoes/', views.ListaAcoes.as_view(), name='ListaAcoes'),
+    path('acao/criar', views.CreateAcao.as_view(), name='CreateAcao'),
+    path('acoes/<int:pk>', views.DeleteUpdateAcao.as_view(), name="DeleteUpdateAcao"),
 
     path('noticias/', views.ListaNoticia.as_view(), name='ListaNoticia'),
     path('noticia/criar', views.CreateNoticia.as_view(), name='CreateNoticia'),
