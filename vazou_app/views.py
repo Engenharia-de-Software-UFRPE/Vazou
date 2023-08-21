@@ -85,8 +85,6 @@ class DeleteUpdateAcao(generics.RetrieveUpdateDestroyAPIView):
     queryset = Acao.objects.all()
     permission_classes = [IsAuthenticated]
     
-        
-
 @csrf_exempt
 def rec_report(request):
     if request.method == 'POST':
