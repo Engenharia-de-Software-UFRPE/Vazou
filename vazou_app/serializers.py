@@ -25,3 +25,8 @@ class AcaoSerializer(serializers.ModelSerializer):
       model = Acao
       fields = '__all__'
       related_object = "acoes_empresa"
+
+class AnalistaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Analista
+        fields = '__all__'
