@@ -20,9 +20,13 @@ class DenunciaSerializer(serializers.ModelSerializer):
       fields = '__all__'
 
 class AcaoSerializer(serializers.ModelSerializer):
-    company = EmpresaSerializer()
     
     class Meta:
       model = Acao
       fields = '__all__'
       related_object = "acoes_empresa"
+
+class AnalistaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Analista
+        fields = '__all__'
