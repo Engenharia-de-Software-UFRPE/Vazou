@@ -117,12 +117,17 @@ def send_email(request):
 
     return JsonResponse({'error': 'Método não permitido.'}, status=405)
 
-class AnalistaList(generics.ListCreateAPIView):
+class AnalistaList(generics.ListAPIView):
     queryset = Analista.objects.all()
     serializer_class = AnalistaSerializer
-    permission_classes = [IsAuthenticated, IsAdminUser]
+    permission_classes = [IsAuthenticated]
 
 class AnalistaDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Analista.objects.all()
     serializer_class = AnalistaSerializer
-    permission_classes = [IsAuthenticated, IsAdminUser]
+    permission_classes = [IsAuthenticated]
+
+class CreateAnalista(generics.CreateAPIView):
+    querystet = Analista.objects.all()
+    serializer_class = AnalistaSerializer
+    permission_classes = [IsAuthenticated]
