@@ -7,7 +7,7 @@ from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse
 from .models import *
 from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import send_mail
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.permissions import IsAuthenticated, IsAdminUser, DjangoModelPermissions
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
@@ -33,12 +33,10 @@ def empresaDetail(request, pk):
         serializer = EmpresaSerializer(empresa, many=False)
         return Response(serializer.data)
 
-
 class CreateEmpresa(generics.CreateAPIView):
     queryset = Empresa.objects.all()
     serializer_class = EmpresaSerializer
-    permission_classes = [IsAdminUser] 
-
+    permission_classes = [DjangoModelPermissions] 
 
 class ListaNoticia(generics.ListAPIView):
     queryset = Noticia.objects.all()
@@ -73,17 +71,15 @@ class ListaAcoes(generics.ListAPIView):
         serializer = AcaoSerializer(queryset, many = True)
         return Response(serializer.data)
 
-
 class CreateAcao(generics.CreateAPIView):
     querystet = Acao.objects.all()
     serializer_class = AcaoSerializer
     permission_classes = [IsAuthenticated]
-
-    
+   
 class DeleteUpdateAcao(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = AcaoSerializer
     queryset = Acao.objects.all()
-    permission_classes = [IsAuthenticated]
+    permission_classes = [DjangoModelPermissions]
     
 @csrf_exempt
 def rec_report(request):
@@ -125,9 +121,14 @@ class AnalistaList(generics.ListAPIView):
 class AnalistaDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Analista.objects.all()
     serializer_class = AnalistaSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [DjangoModelPermissions]
 
 class CreateAnalista(generics.CreateAPIView):
     querystet = Analista.objects.all()
     serializer_class = AnalistaSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [DjangoModelPermissions]
+
+class DeleteUpdateAnalista(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = AnalistaSerializer
+    queryset = Analista.objects.all()
+    permission_classes = [DjangoModelPermissions]
