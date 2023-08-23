@@ -4,3 +4,4 @@ from vazou_app.models import *
 admin.site.register(Empresa)
 admin.site.register(Noticia)
 admin.site.register(Denuncia)
+admin.site.register(Analista)
