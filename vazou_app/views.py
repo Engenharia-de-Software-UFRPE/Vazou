@@ -116,3 +116,13 @@ def send_email(request):
             return JsonResponse({'error': 'Dados incompletos ou inválidos.'}, status=400)
 
     return JsonResponse({'error': 'Método não permitido.'}, status=405)
+
+class AnalistaList(generics.ListCreateAPIView):
+    queryset = Analista.objects.all()
+    serializer_class = AnalistaSerializer
+    permission_classes = [IsAuthenticated, IsAdminUser]
+
+class AnalistaDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Analista.objects.all()
+    serializer_class = AnalistaSerializer
+    permission_classes = [IsAuthenticated, IsAdminUser]
