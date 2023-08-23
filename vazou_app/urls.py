@@ -33,4 +33,5 @@ urlpatterns = [
     path('analistas/', views.AnalistaList.as_view(), name='analista-list'),
     path('analistas/<int:pk>/', views.AnalistaDetail.as_view(), name='analista-detail'),
     path('analista/criar', views.CreateAnalista.as_view(), name='analista-create'),
+    path('analista/<int:pk>', views.DeleteUpdateAnalista.as_view(), name="DeleteUpdateAnalista"),
 ]

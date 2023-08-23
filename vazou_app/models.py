@@ -45,7 +45,7 @@ class Noticia(models.Model):
    creation_date = models.DateTimeField('Data de criação', default=timezone.now)
    edit_date = models.DateTimeField('Última edição', default=timezone.now)
    
-   company = models.ForeignKey(Empresa, on_delete=models.CASCADE, related_name='noticias_empresa', null = True)
+   company = models.ForeignKey(Empresa, on_delete=models.CASCADE, related_name='noticias_empresa', null = True, blank=True)
    
    fst_image = models.ImageField(upload_to='Noticia/', default='')
    snd_image = models.ImageField(upload_to='Noticia/', default='')
