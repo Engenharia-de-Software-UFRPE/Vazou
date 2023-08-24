@@ -1,16 +1,10 @@
 'use client'
-import Form from '../components/form'
+
 
 import Image from "next/image"
-import CardEnterprise from "../components/cardEnterprise"
-import Button from '../components/button'
 import { useRouter } from 'next/navigation'
-import RankingSection from '../components/rankingSection'
 
 export default function News() {
-
-
-  const router = useRouter();
 
 
   return (
@@ -44,11 +38,11 @@ export default function News() {
           </div>
           
           <div>
-                <Image
-                    src={"/home/news_tiktok.png"}
-                    width={68}
-                    height={68}
-                />
+            <Image
+              src={"/home/news_tiktok.png"}
+              width={68}
+              height={68}
+            />
           </div>
 
           {/* Subtítulo - Fim */}
@@ -56,12 +50,13 @@ export default function News() {
 
           {/* Texto - Inicio */}
 
-          <div className="text-orange-500 text-2xl font-extrabold text-[5rem] mt-10 mb-7">
-            L
+          <div className='text-sm text-justify w-[75rem] mb-3 first-letter:float-left first-letter:text-9xl first-letter:font-poppins
+          first-letter:font-extrabold first-letter:text-orange-500'>
+            Lorem ipsum dolor sit amet consectetur. Tristique turpis faucibus vestibulum potenti sit magna scelerisque. Faucibus euismod accumsan vehicula laoreet ut. Massa morbi quam in tincidunt diam at. Tempus et lectus ac at ac varius eget. Mattis dui turpis ultricies quam nisl molestie. Vivamus lobortis semper ut dui quis nulla est. Viverra diam feugiat viverra pellentesque in. Amet cras in erat mauris condimentum felis fringilla eleifend. Phasellus netus cursus tempus justo ut eget viverra.
           </div>
 
           <div className='text-sm text-justify w-[75rem] mb-3'>
-              Consectetur varius in metus velit tellus tellus sem fermentum. A id sed semper cursus metus. Euismod posuere nisl lacus dui ipsum a faucibus. Tincidunt porttitor sed ultricies consequat. Eget parturient feugiat porttitor velit id sagittis. Amet et tortor potenti purus nibh congue. Pulvinar duis gravida porta ultrices turpis phasellus nisi massa.
+            Consectetur varius in metus velit tellus tellus sem fermentum. A id sed semper cursus metus. Euismod posuere nisl lacus dui ipsum a faucibus. Tincidunt porttitor sed ultricies consequat. Eget parturient feugiat porttitor velit id sagittis. Amet et tortor potenti purus nibh congue. Pulvinar duis gravida porta ultrices turpis phasellus nisi massa.
           </div>
           
           <div className='text-sm text-justify w-[75rem] mb-3'>
@@ -75,7 +70,7 @@ export default function News() {
           </div>
           {/* Texto - Fim */}
 
-          <div>
+          <div className='mx-auto'>
                 <Image
                     src={"/home/news_foto2.png"}
                     width={735}
