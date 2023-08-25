@@ -34,7 +34,7 @@ export default function Form(){
             <Input title="Assunto" type="Assunto" value={assunto} setValue={setAssunto} />
             <div className='mt-3'>
                 <h4 className=" mr-auto font-semibold">Descrição</h4>
-                <textarea className=' border-[2px] border-black rounded shadow p-2 w-[580px] h-[180px]' placeholder='Descrição'  value={descrip} onChange={(e)=> setDescrip(e.target.value)}></textarea> 
+                <textarea className=' rounded shadow p-2 w-[360px] h-[140px]' placeholder='Descrição'  value={descrip} onChange={(e)=> setDescrip(e.target.value)}></textarea> 
             </div>
             <Button onClickFunction={() => submitForm()} backgroundColor={'bg-black'}>
                 Enviar
