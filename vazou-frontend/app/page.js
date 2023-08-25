@@ -5,6 +5,7 @@ import CardEnterprise from "./components/cardEnterprise"
 import Button from './components/button'
 import { useRouter } from 'next/navigation'
 import RankingSection from './components/rankingSection'
+import FormDenuncia from "./components/form_den"
 
 export default function Home() {
 
@@ -151,7 +152,7 @@ export default function Home() {
               Descreva o caso de vazamento ou uso indevido de dados privados
             </div>
           </div>
-          <Form/>
+          <FormDenuncia/>
         
         </div>
         {/* Denuncia - Fim */}
