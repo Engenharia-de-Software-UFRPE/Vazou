@@ -1,5 +1,5 @@
 'use client'
-
+import Enterprise from '../components/Enterprise'
 import Image from 'next/image'
 import Form from '../components/form'
 
@@ -141,6 +141,9 @@ export default function About(){
                 </div>
                 <Form className=''/>
             </div>
+
+            <Enterprise/>
+
         </div>
         
     )
