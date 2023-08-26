@@ -7,8 +7,8 @@ export default function About(){
     return (
         <div  className='flex flex-col min-h-screen font-poppins'>
 
-            <div className="h-[25rem]">
-                <div className={`relative h-96 w-[94.9rem] -inset-y-2 z-0`}>
+            <div className="flex flex-col  h-[25rem]">
+                <div className={`relative h-96 w-[94.9rem] -inset-y-2 z-0 items-center`}>
                     <Image src="/about/BannerSobre.png" fill />
                 </div>  
 
@@ -19,13 +19,13 @@ export default function About(){
                 </div>
             </div>
 
-            <div className='flex flex-row mx-auto justify-between items-center h-[400px] mt-20'>
-                <div className='flex flex-col'>
-                    <h2 className='text-2xl font-semibold h-[64px] w-[292]'>Nosso Objetivo</h2>
-                    <p className='text-xs w-[292px] h-[456px] '>Lorem ipsum dolor sit amet consectetur. Congue nis l eu arcu quis habitasse pharetra. Eu molestie netus et rhoncus egestas. Vel sit semper eleifend sed imperdiet consectetur sollicitudin. Velit facilisi egestas cursus tellus eget eget ut et enim. Dictum lacus amet non eget purus habitasse dignissim odio facilisi. Lorem ipsum dolor sit amet consectetur. Congue nisl eu arcu quis habitasse pharetra. Eu molestie netus et rhoncus egestas. Vel sit semper eleifend sed imperdiet consectetur sollicitudin. Velit facilisi egestas cursus tellus eget eget ut et enim. Dictum lacus amet non eget purus habitasse dignissim odio facilisi.</p>
+            <div className='flex flex-row mx-auto justify-center items-center h-[400px] '>
+                <div className='flex flex-col my-4'>
+                    <h2 className='text-2xl font-semibold h-[64px] w-[300]'>Nosso Objetivo</h2>
+                    <p className='text-base w-[300px] h-[456px] '>Lorem ipsum dolor sit amet consectetur. Congue nisl eu arcu quis habitasse pharetra. Eu molestie netus et rhoncus egestas. Vel sit semper eleifend sed imperdiet consectetur sollicitudin. Velit facilisi egestas cursus tellus eget eget ut et enim. Dictum lacus amet non eget purus habitasse dignissim odio facilisi.</p>
                 </div>
                 <Image
-                    className=''
+                    className='mx-8 mt-[-100px]'
                     src={'/about/keys.svg'}
                     width={300}
                     height={350}
@@ -34,17 +34,17 @@ export default function About(){
                 
             </div>
 
-            <div className='flex  text-white flex-row mx-auto justify-around bg-orange-500  min-w-full'>
+            <div className='flex  text-white flex-row mx-auto justify-center  items-center bg-orange-500  min-w-full'>
                 <Image
                     src={'/about/cadeado.svg'}
                     width={360}
                     height={400}
                 >
                 </Image>
-                <div className=''>
-                    <h2 className='text-xl font-semibold h-[40px] w-[240px]'>Confie em nós para entender sua segurança</h2>
-                    <h3 className='text-base'>Alguma coisa</h3>
-                    <p className='text-xs w-[292px] h-[360px] '>Lorem ipsum dolor sit amet consectetur. Congue nis l eu arcu quis habitasse pharetra. Eu molestie netus et rhoncus egestas. Vel sit semper eleifend sed imperdiet consectetur sollicitudin. Velit facilisi egestas cursus tellus eget eget ut et enim. Dictum lacus amet non eget purus habitasse dignissim odio facilisi. Lorem ipsum dolor sit amet consectetur. Congue nisl eu arcu quis habitasse pharetra. Eu molestie netus et rhoncus egestas. Vel sit semper eleifend sed imperdiet consectetur sollicitudin.</p>
+                <div className='mx-12 items-start'>
+                    <h2 className='text-3xl font-bold w-[300px]'>Confie em nós para entender sua segurança</h2>
+                    <h3 className='text-xl my-2'>Conheça as vulnerabilidades!</h3>
+                    <p className='text-base w-[300px] mt-8'>Velit facilisi egestas cursus tellus eget eget ut et enim. Dictum lacus amet non eget purus habitasse dignissim odio facilisi. Vel sit semper eleifend sed imperdiet consectetur sollicitudin.</p>
                 </div>
             </div>
 
@@ -134,13 +134,15 @@ export default function About(){
                 </div>
             </div>
 
-            <div className='flex flex-row justify-around items-center mx-auto min-w-full py-7 bg-orange-500'>
-                <div>
-                    <h2 className='text-2xl font-semibold h-[64px] w-[292]'>Fale Conosco</h2>
-                    <p className='text-xs w-[292px] h-[456px] mr-6 '>Lorem ipsum dolor sit amet consectetur. Congue nis l eu arcu quis habitasse pharetra. Eu molestie netus et rhoncus egestas. Vel sit semper eleifend sed imperdiet consectetur sollicitudin. Velit facilisi egestas cursus tellus eget eget ut et enim. Dictum lacus amet non eget purus habitasse dignissim odio facilisi. Lorem ipsum dolor sit amet consectetur. Congue nisl eu arcu quis habitasse pharetra. Eu molestie netus et rhoncus egestas. Vel sit semper eleifend sed imperdiet consectetur sollicitudin.</p> </div>
+            <div className='flex flex-row justify-center items-start min-w-full py-10 bg-orange-500'>
+                <div className='w-[300px] mr-12'>
+                    <h2 className='text-2xl font-semibold mb-4'>Fale Conosco</h2>
+                    <p className='text-base  '>Lorem ipsum dolor sit amet consectetur. Congue nis l eu arcu quis habitasse pharetra. Eu molestie netus et rhoncus egestas. Vel sit semper eleifend sed imperdiet consectetur sollicitudin. Velit facilisi egestas cursus tellus eget eget ut et enim.</p> 
+                </div>
                 <Form className=''/>
             </div>
         </div>
+        
     )
 }
 
