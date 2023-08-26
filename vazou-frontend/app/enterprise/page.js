@@ -24,7 +24,7 @@ export default function Enterprise(){
 
     return (
         <div  className='flex flex-col min-h-screen bg-white'>
-            <div className="bg-orange-500 min-w-full h-56 flex items-center ">
+            <div className="bg-orange-500 min-w-full h-32 flex items-center ">
                 <SearchBar />
             </div>
 
