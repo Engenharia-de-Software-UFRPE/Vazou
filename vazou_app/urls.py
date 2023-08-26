@@ -19,6 +19,8 @@ urlpatterns = [
 
     path('noticias/', views.ListaNoticia.as_view(), name='ListaNoticia'),
     path('noticia/criar', views.CreateNoticia.as_view(), name='CreateNoticia'),
+    path('noticias/empresa/<int:empresa_id>/', views.ListaNoticia.as_view(), name='listar_noticias_por_empresa'),
+    path('noticias/recentes', views.ListaNoticia.as_view(), name='listar_noticias_recentes'),
 
     #path('Empresa/<int:pk>', views.index, name='index'),
     path('api-auth/', include('rest_framework.urls')),

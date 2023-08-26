@@ -39,8 +39,14 @@ class CreateEmpresa(generics.CreateAPIView):
     permission_classes = [DjangoModelPermissions] 
 
 class ListaNoticia(generics.ListAPIView):
-    queryset = Noticia.objects.all()
     serializer_class = NoticiaSerializer
+
+    def get_queryset(self):
+        queryset = Noticia.objects.all()
+        empresa_id = self.kwargs.get('empresa_id')
+        if empresa_id:
+            queryset = queryset.filter(company_id=empresa_id)
+        return queryset.order_by('-creation_date')[:5]
 
 class CreateNoticia(generics.CreateAPIView):
     queryset = Noticia.objects.all()
