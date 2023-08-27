@@ -7,7 +7,6 @@ class EmpresaSerializer(serializers.ModelSerializer):
       fields = '__all__'
 
 class NoticiaSerializer(serializers.ModelSerializer):
-   company = EmpresaSerializer()
 
    class Meta:
       model = Noticia

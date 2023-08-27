@@ -38,9 +38,24 @@ class CreateEmpresa(generics.CreateAPIView):
     serializer_class = EmpresaSerializer
     permission_classes = [DjangoModelPermissions] 
 
+class DeleteUpdateEmpresa(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = EmpresaSerializer
+    queryset = Empresa.objects.all()
+    #permission_classes = [DjangoModelPermissions]
+
 class ListaNoticia(generics.ListAPIView):
     serializer_class = NoticiaSerializer
 
+    def list(self, request):
+        req = self.request
+        comp = req.query_params.get('company', None)
+        queryset = Noticia.objects.all()
+
+        if comp:
+            queryset = Noticia.objects.filter(company = comp)
+        serializer = NoticiaSerializer(queryset, many = True)
+        return Response(serializer.data)
+    
     def get_queryset(self):
         queryset = Noticia.objects.all()
         empresa_id = self.kwargs.get('empresa_id')
@@ -52,6 +67,11 @@ class CreateNoticia(generics.CreateAPIView):
     queryset = Noticia.objects.all()
     serializer_class = NoticiaSerializer
     permission_classes = [IsAuthenticated]
+
+class DeleteUpdateNoticia(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = NoticiaSerializer
+    queryset = Noticia.objects.all()
+    permission_classes = [DjangoModelPermissions]
 
 def index(request):
     return HttpResponse("Hello, world. You're at the index.")
