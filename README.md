@@ -24,3 +24,12 @@ Simples, rápido e fácil:
 ```
 python manage.py runserver
 ```
+
+## Nosso Time
+
+| BackEnd      | FrontEnd |
+|:----------------:|:-------------------:|
+| <img src="https://avatars.githubusercontent.com/u/91702532?v=4" width="100px;" alt=""/><br /><sub><b>Camile Alheiro</b></sub></a> | <img src="https://avatars.githubusercontent.com/u/48994718?v=4" width="100px;" alt=""/><br /><sub><b>Dayanne Carolina</b></sub></a> |
+| <img src="https://avatars.githubusercontent.com/u/101341627?v=4" width="100px;" alt=""/><br /><sub><b>Heitor Ferraz</b></sub></a> | <img src="https://avatars.githubusercontent.com/u/110747518?v=4" width="100px;" alt=""/><br /><sub><b>Gabriel Leão</b></sub></a> |
+|<img src="https://avatars.githubusercontent.com/u/110747356?v=4" width="100px;" alt=""/><br /><sub><b>Maria Gabrielly</b></sub></a>| <img src="https://avatars.githubusercontent.com/u/83296570?v=4" width="100px;" alt=""/><br /><sub><b>João Victor</b></sub></a> |
+| <img src="https://avatars.githubusercontent.com/u/61083199?v=4" width="100px;" alt=""/><br /><sub><b>Stella Nazário</b></sub></a> | <img src="https://avatars.githubusercontent.com/u/110426628?v=4" width="100px;" alt=""/><br /><sub><b>Marina Mota</b></sub></a> |
