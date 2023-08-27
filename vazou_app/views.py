@@ -41,7 +41,7 @@ class CreateEmpresa(generics.CreateAPIView):
 class DeleteUpdateEmpresa(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = EmpresaSerializer
     queryset = Empresa.objects.all()
-    #permission_classes = [DjangoModelPermissions]
+    permission_classes = [DjangoModelPermissions]
 
 class ListaNoticia(generics.ListAPIView):
     serializer_class = NoticiaSerializer

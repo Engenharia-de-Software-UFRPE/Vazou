@@ -15,7 +15,7 @@ urlpatterns = [
 
     path('acoes/', views.ListaAcoes.as_view(), name='ListaAcoes'),
     path('acao/criar', views.CreateAcao.as_view(), name='CreateAcao'),
-    path('acoes/<int:pk>', views.DeleteUpdateAcao.as_view(), name="DeleteUpdateAcao"),
+    path('acao/<int:pk>', views.DeleteUpdateAcao.as_view(), name="DeleteUpdateAcao"),
 
     path('noticias/', views.ListaNoticia.as_view(), name='ListaNoticia'),
     path('noticia/criar', views.CreateNoticia.as_view(), name='CreateNoticia'),
@@ -34,7 +34,7 @@ urlpatterns = [
     path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(), name="password_reset_complete"),
 
     path('analistas/', views.AnalistaList.as_view(), name='analista-list'),
-    path('analistas/<int:pk>/', views.AnalistaDetail.as_view(), name='analista-detail'),
+    path('analista/<int:pk>/', views.AnalistaDetail.as_view(), name='analista-detail'),
     path('analista/criar', views.CreateAnalista.as_view(), name='analista-create'),
     path('analista/<int:pk>', views.DeleteUpdateAnalista.as_view(), name="DeleteUpdateAnalista"),
 ]
