@@ -17,7 +17,8 @@ export default function complaint() {
                         height={407}
                     />
 
-                    <SearchBar className="z-10 !absolute"/>
+                    <SearchBar/>  
+                    {/* a imagem ta na frente dessa mizéra, resolve aí pfv */}
                 </div>
 
             </div>

@@ -17,8 +17,6 @@ export default function cardComplaint(){
                     </div>
                 </div>
             </div>
-
-            
         </div>
     )
 }
