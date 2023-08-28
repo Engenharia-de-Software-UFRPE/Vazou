@@ -11,14 +11,17 @@ urlpatterns = [
     path('empresas/', views.ListaEmpresa.as_view(), name='ListaEmpresa'),
     path('empresa/criar', views.CreateEmpresa.as_view(), name='CreateEmpresa'),
     path('empresa/<str:pk>', views.empresaDetail, name='Empresa'),
-    #path('empresa/update/<str:pk>', views.UpdateEmpresa.as_view(), name='UpdateEmpresa'),
+    path('empresa/update/<int:pk>', views.DeleteUpdateEmpresa.as_view(), name='UpdateEmpresa'),
 
     path('acoes/', views.ListaAcoes.as_view(), name='ListaAcoes'),
     path('acao/criar', views.CreateAcao.as_view(), name='CreateAcao'),
-    path('acoes/<int:pk>', views.DeleteUpdateAcao.as_view(), name="DeleteUpdateAcao"),
+    path('acao/<int:pk>', views.DeleteUpdateAcao.as_view(), name="DeleteUpdateAcao"),
 
     path('noticias/', views.ListaNoticia.as_view(), name='ListaNoticia'),
     path('noticia/criar', views.CreateNoticia.as_view(), name='CreateNoticia'),
+    path('noticia/update/<int:pk>', views.DeleteUpdateNoticia.as_view(), name='UpdateNoticia'),
+    #path('noticias/empresa/<int:empresa_id>/', views.ListaNoticia.as_view(), name='listar_noticias_por_empresa'),
+    path('noticias/recentes', views.ListaNoticia.as_view(), name='listar_noticias_recentes'),
 
     #path('Empresa/<int:pk>', views.index, name='index'),
     path('api-auth/', include('rest_framework.urls')),
@@ -31,7 +34,7 @@ urlpatterns = [
     path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(), name="password_reset_complete"),
 
     path('analistas/', views.AnalistaList.as_view(), name='analista-list'),
-    path('analistas/<int:pk>/', views.AnalistaDetail.as_view(), name='analista-detail'),
+    path('analista/<int:pk>/', views.AnalistaDetail.as_view(), name='analista-detail'),
     path('analista/criar', views.CreateAnalista.as_view(), name='analista-create'),
     path('analista/<int:pk>', views.DeleteUpdateAnalista.as_view(), name="DeleteUpdateAnalista"),
 ]
