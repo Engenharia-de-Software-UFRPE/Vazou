@@ -17,6 +17,23 @@ export default function cardComplaint(){
                     </div>
                 </div>
             </div>
+            <div className=" flex flex-col items-center mt-4 px-4">
+            <div className=" font-medium font-poppins text-base whitespace-nowrap text-red-500">
+                        Não lido
+                    </div>
+                <div className="">
+                    <div className="flex items-center  rounded-t-md p-4 cursor-pointer" 
+                        //onClick={() =>DropdownAction()}
+                    >
+                     <div className=" text-black">
+                            <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                            </svg>
+                         </div>
+                    </div>
+                    
+                </div>
+            </div>
         </div>
     )
 }
