@@ -1,5 +1,5 @@
 from django.test import TestCase
-from rest_framework.test import APIClient, APIRequestFactory
+from rest_framework.test import APIClient, APITestCase, APIRequestFactory
 from django.contrib.auth.models import User
 from rest_framework import status
 from django.urls import reverse
@@ -107,3 +107,45 @@ class TestDeleteUpdateAcao(TestCase):
         response = self.client.delete(reverse('DeleteUpdateAcao', kwargs={'pk': self.acao.pk}))
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertFalse(Acao.objects.filter(pk=self.acao.pk).exists())
+
+class NoticiaViewsTest(APITestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.user = User.objects.create_user(username='testuser', password='testpass')
+        self.client.login(username='testuser', password='testpass')
+
+        # Crie um exemplo de notícia para testar
+        self.noticia = Noticia.objects.create(title='Título da Notícia', subtitle='Subtítulo', text='Texto da notícia')
+
+    def test_listar_noticias(self):
+        response = self.client.get('/noticias/')  # Use a URL correta
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_criar_noticia(self):
+        data = {
+            'title': 'Nova Notícia',
+            'subtitle': 'Subtítulo',
+            'text': 'Texto da notícia'
+        }
+        response = self.client.post('/noticia/criar', data)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    def test_atualizar_noticia(self):
+        data = {
+            'title': 'Título atualizado',
+            'subtitle': 'Subtítulo atualizado',
+            'text': 'Texto atualizado'
+        }
+        response = self.client.put(f'/noticia/update/{self.noticia.pk}', data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.noticia.refresh_from_db()
+        self.assertEqual(self.noticia.title, 'Título atualizado')
+
+    def test_deletar_noticia(self):
+        response = self.client.delete(f'/noticia/update/{self.noticia.pk}')
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertFalse(Noticia.objects.filter(pk=self.noticia.pk).exists())
+
+    def test_listar_noticias_recentes(self):
+        response = self.client.get('/noticias/recentes')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
