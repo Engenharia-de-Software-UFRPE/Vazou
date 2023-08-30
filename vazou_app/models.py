@@ -14,6 +14,11 @@ class Empresa(models.Model):
    C5 = 'Saúde'
    C6 = 'Financeiro'
    C7 = 'Entretenimento'
+   C8 = 'Governo'
+   C9 = 'Finanças'
+   C10 = 'Tecnologia'
+   C11 = 'Transporte'
+   C12 = 'Varejo'
 
    CATEGORY = [
       (C1, 'Moda'),
@@ -22,13 +27,19 @@ class Empresa(models.Model):
       (C4, 'Educação'),
       (C5, 'Saúde'),
       (C6, 'Financeiro'),
-      (C7, 'Entretenimento')
+      (C7, 'Entretenimento'),
+      (C8, 'Governo'),
+      (C9, 'Finanças'),
+      (C10, 'Tecnologia'),
+      (C11, 'Transporte'),
+      (C12, 'Varejo')
+
    ]
 
    perfil_image = models.ImageField(upload_to='Empresa/', default='')
    tradeName = models.CharField('Nome Fantasia', max_length=100)
    corporateName = models.CharField('Razão Social', max_length=100)
-   abstract = models.TextField('Resumo', max_length=300)
+   abstract = models.TextField('Resumo', max_length=400)
    categoria = models.CharField(choices=CATEGORY, max_length=100)
    score = models.DecimalField('Score',max_digits = 4, decimal_places = 2 , default=0)
 
@@ -39,11 +50,11 @@ class Empresa(models.Model):
 
 class Noticia(models.Model):
     
-   title = models.TextField('Título', max_length=120)
-   subtitle = models.TextField('Subtítulo', max_length=200)
+   title = models.CharField('Título', max_length=120)
+   subtitle = models.CharField('Subtítulo', max_length=200)
    text = models.TextField('Texto', max_length=3000)
    creation_date = models.DateTimeField('Data de criação', default=timezone.now)
-   edit_date = models.DateTimeField('Última edição', default=timezone.now)
+   edit_date = models.DateTimeField('Última edição', null = True)
    
    company = models.ForeignKey(Empresa, on_delete=models.CASCADE, related_name='noticias_empresa', null = True, blank=True)
    
@@ -52,6 +63,8 @@ class Noticia(models.Model):
 
    class Meta:
       db_table = 'noticia'
+   def __str__(self):
+      return self.title
 
 class Denuncia(models.Model):
    
@@ -63,6 +76,8 @@ class Denuncia(models.Model):
 
    class Meta:
       db_table = 'denuncia'
+   def __str__(self):
+      return self.title
 
 class Acao(models.Model):
 
@@ -73,6 +88,8 @@ class Acao(models.Model):
 
    class Meta:
       db_table = 'acao'
+   def __str__(self):
+      return self.title
 
 class Analista(models.Model):
 

@@ -41,7 +41,7 @@ class CreateEmpresa(generics.CreateAPIView):
 class DeleteUpdateEmpresa(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = EmpresaSerializer
     queryset = Empresa.objects.all()
-    permission_classes = [DjangoModelPermissions]
+    permission_classes = [IsAuthenticated]
 
 class ListaNoticia(generics.ListAPIView):
     serializer_class = NoticiaSerializer
@@ -71,7 +71,7 @@ class CreateNoticia(generics.CreateAPIView):
 class DeleteUpdateNoticia(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = NoticiaSerializer
     queryset = Noticia.objects.all()
-    permission_classes = [DjangoModelPermissions]
+    permission_classes = [IsAuthenticated]
 
 def index(request):
     return HttpResponse("Hello, world. You're at the index.")
@@ -105,7 +105,7 @@ class CreateAcao(generics.CreateAPIView):
 class DeleteUpdateAcao(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = AcaoSerializer
     queryset = Acao.objects.all()
-    permission_classes = [DjangoModelPermissions]
+    permission_classes = [IsAuthenticated]
     
 @csrf_exempt
 def rec_report(request):
