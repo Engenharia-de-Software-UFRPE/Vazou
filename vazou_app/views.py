@@ -26,12 +26,6 @@ class ListaEmpresa(generics.ListAPIView):
         serializer = EmpresaSerializer(queryset, many = True)
         return Response(serializer.data)
 
-#View de cada empresa por id
-@api_view(['GET'])    
-def empresaDetail(request, pk):
-        empresa = Empresa.objects.get(id=pk)
-        serializer = EmpresaSerializer(empresa, many=False)
-        return Response(serializer.data)
 
 class CreateEmpresa(generics.CreateAPIView):
     queryset = Empresa.objects.all()
@@ -143,11 +137,6 @@ class AnalistaList(generics.ListAPIView):
     queryset = Analista.objects.all()
     serializer_class = AnalistaSerializer
     permission_classes = [IsAuthenticated]
-
-class AnalistaDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Analista.objects.all()
-    serializer_class = AnalistaSerializer
-    permission_classes = [DjangoModelPermissions]
 
 class CreateAnalista(generics.CreateAPIView):
     querystet = Analista.objects.all()
