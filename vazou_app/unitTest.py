@@ -149,3 +149,44 @@ class NoticiaViewsTest(APITestCase):
     def test_listar_noticias_recentes(self):
         response = self.client.get('/noticias/recentes')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+class DenunciaViewsTest(APITestCase):
+  def setUp(self):
+    self.client = APIClient()
+    self.user = User.objects.create_user(username='testuser', password='testpass')
+    self.client.login(username='testuser', password='testpass')
+
+    self.denuncia = Denuncia.objects.create(title='Título da Denúncia', name_company='Empresa de Teste', text='Texto da denúncia')
+
+    def test_listar_denuncias(self):
+        response = self.client.get('/denuncias/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_criar_denuncia(self):
+        data = {
+            'title': 'denuncia bombastica',
+            'name_company': 'conterraneo bar',
+            'text': 'jukebox roubada'
+        }
+        response = self.client.post('/denuncia/criar', data)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+    
+    def test_atualizar_denuncia(self):
+        data = {
+            'title': 'era mentira',
+            'name_company': 'conterraneo',
+            'text': 'jukebox nao foi roubada'
+        }
+        response = self.client.put(f'/denuncia/update/{self.denuncia.pk}', data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.denuncia.refresh_from_db()
+        self.assertEqual(self.denuncia.title, 'denuncia bombastica')
+
+    def test_deletar_denuncia(self):
+        response = self.client.delete(f'/denuncia/update/{self.denuncia.pk}')
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertFalse(Denuncia.objects.filter(pk=self.denuncia.pk).exists())
+
+    def test_listar_denuncias_recentes(self):
+        response = self.client.get('/denuncias/recentes')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
