@@ -1,4 +1,3 @@
-'use client'
 
 import Image from "next/image"
 import CardEnterprise from "./components/cardEnterprise"
@@ -6,30 +5,46 @@ import Button from './components/button'
 import { useRouter } from 'next/navigation'
 import RankingSection from './components/rankingSection'
 import FormDenuncia from "./components/form_den"
+import Link from "next/link"
 
-export default function Home() {
+async function getEnterprise() {
+  const res = await fetch(`http://127.0.0.1:8000/empresas`)
+  return res.json()
+}
 
+async function getNews() {
+  const res = await fetch(`http://127.0.0.1:8000/noticias/recentes`)
+  return res.json()
+}
 
-  const router = useRouter();
+export default async function Home() {
+
+  const enterpriseData = getEnterprise()
+  const [enterprise] = await Promise.all([enterpriseData])
+
+  const newsData = getNews()
+  const [news] = await Promise.all([newsData])
+/* 
+  const router = useRouter(); */
 
 
   return (
-    <main className='flex min-h-screen font-poppins bg-white'>
+    <main className='flex min-h-screen font-poppins bg-white '>
 
       
       <div>
         {/* Notícia principal - Início */}
         <div className="h-[25rem]">
-          <div className={`relative h-96 w-[94.9rem] -inset-y-2 z-0`}>
+          <div className={`relative h-96 w-[94.45rem] -inset-y-2 z-0`}>
             <Image src="/home/home_image.png" fill />
           </div>  
 
           <div className=" relative -inset-y-32 z-10 px-80 text-white font-bold text-[2rem]">
             <div>
-              Lorem Ipsum lorem Ipsum
+              {news[0].title}
             </div>
             <div className="text-[1rem] font-bold">
-              lorem ipsum lorem ipsum
+              {news[0].subtitle}
             </div>
           </div>
         </div>
@@ -71,16 +86,17 @@ export default function Home() {
             Empresas com maior Score de Segurança
           </div>
 
-          <CardEnterprise />
+          <CardEnterprise enterprise={enterprise[0]} />
 
-          <CardEnterprise />
+          <CardEnterprise enterprise={enterprise[1]} />
 
           <div className='flex justify-center w-[56rem] mb-10'>
-            <Button 
-              children={"Ver mais"}
-              backgroundColor={"bg-black"}
-              onClickFunction={() => router.push('/enterprise')}
-            />
+            <Link href={'/enterprise'}>
+              <Button 
+                children={"Ver mais"}
+                backgroundColor={"bg-black"}        />
+            </Link>
+            
           </div>
           {/* Ranking - Fim */}
 
@@ -119,7 +135,7 @@ export default function Home() {
         {/* Sobre - Fim */}
         
         {/* Metodologia - Inicio */}
-        <div className='flex bg-black px-80 py-14 text-gray-200'>
+        <div className='flex bg-black px-72 py-14 text-gray-200'>
           <div className='w-[32rem]'>
             <div className='font-bold text-2xl mb-4'>
               Metodologia

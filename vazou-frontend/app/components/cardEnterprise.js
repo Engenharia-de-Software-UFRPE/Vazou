@@ -1,6 +1,8 @@
 import Image from "next/image";
 
-export default function CardEnterprise(){
+export default function CardEnterprise({enterprise}){
+
+    console.log()
 
     return (
         <div className="flex flex-row w-[56rem] justify-between px-4 py-3  my-2 border border-black border-opacity-5 rounded-md shadow-lg bg-slate-50">
@@ -14,10 +16,10 @@ export default function CardEnterprise(){
                 </div>
                 <div className="flex flex-col justify-center ml-5">
                     <div className=" font-semibold text-lg">
-                        Nome da empresa
+                        {enterprise.tradeName}
                     </div>
                     <div className=" text-sm">
-                        Setor de mercado
+                       {enterprise.categoria}
                     </div>
                     <div className=" text-xs">
                         00 denúncias de vazamento
