@@ -14,4 +14,3 @@ class RegisterView(generics.CreateAPIView):
     permission_classes = [IsAdminUser]
     serializer_class = RegisterSerializer
 
-#class AnalistasView(generics.CreateAPIView):

@@ -7,6 +7,9 @@ import { useRouter } from 'next/navigation'
 export default function News() {
 
 
+  const router = useRouter();
+
+
   return (
     <main className='flex min-h-screen font-poppins bg-white'>
 
