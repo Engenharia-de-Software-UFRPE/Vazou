@@ -1,4 +1,5 @@
 'use client'
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Dropdown() {
@@ -30,17 +31,38 @@ export default function Dropdown() {
                             </svg>
                          </div>
                     </div>
-                    <div id="dropdown" className="absolute bg-white divide-gray-100 rounded-b-md shadow w-44 hidden">
-                        <ul className="py-2 ">
-                            <li className="block px-4 py-2 hover:bg-gray-100">
-                                <a>Redes Sociais</a>
-                            </li>
-                            <li className="block px-4 py-2 hover:bg-gray-100">
-                                <a>Indústrias</a>
-                            </li>
-                            <li className="block px-4 py-2 hover:bg-gray-100">
-                                <a>Varejo</a>
-                            </li>
+                    <div id="dropdown" className="absolute bg-white divide-gray-100 rounded-b-md shadow w-44  hidden">
+                        <ul className="py-2 cursor-pointer ">
+                            <Link href={"enterprise?category=SocialMedia"}>
+                                <li className="block px-4 py-2 hover:bg-gray-100">
+                                    Rede Social
+                                </li>
+                            </Link>
+                            <Link href={"enterprise?category=Tecnologia"}>
+                                <li className="block px-4 py-2 hover:bg-gray-100">
+                                    Tecnologia
+                                </li>
+                            </Link>
+                            <Link href={"enterprise?category=Transporte"}>
+                                <li className="block px-4 py-2 hover:bg-gray-100">
+                                    Transporte
+                                </li>
+                            </Link>
+                            <Link href={"enterprise?category=Education"}>
+                                <li className="block px-4 py-2 hover:bg-gray-100">
+                                    Educação
+                                </li>
+                            </Link>
+                            <Link href={"enterprise?category=Entretenimento"}>
+                                <li className="block px-4 py-2 hover:bg-gray-100">
+                                    Entretenimento
+                                </li>
+                            </Link>
+                            <Link href={"enterprise?category=Varejo"}>
+                                <li className="block px-4 py-2 hover:bg-gray-100">
+                                    Varejo
+                                </li>
+                            </Link>
 
                         </ul>
                     </div>

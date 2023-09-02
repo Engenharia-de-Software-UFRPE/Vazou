@@ -8,7 +8,7 @@ export default function About(){
         <div  className='flex flex-col min-h-screen font-poppins'>
 
             <div className="flex flex-col  h-[25rem]">
-                <div className={`relative h-96 w-[94.9rem] -inset-y-2 z-0 items-center`}>
+                <div className={`relative h-96 w-[94.9rem] z-0 items-center`}>
                     <Image src="/about/BannerSobre.png" fill />
                 </div>  
 

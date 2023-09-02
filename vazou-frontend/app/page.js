@@ -2,18 +2,17 @@
 import Image from "next/image"
 import CardEnterprise from "./components/cardEnterprise"
 import Button from './components/button'
-import { useRouter } from 'next/navigation'
 import RankingSection from './components/rankingSection'
 import FormDenuncia from "./components/form_den"
 import Link from "next/link"
 
 async function getEnterprise() {
-  const res = await fetch(`http://127.0.0.1:8000/empresas`)
+  const res = await fetch(`http://127.0.0.1:8000/empresas`,{ cache: 'no-store' })
   return res.json()
 }
 
 async function getNews() {
-  const res = await fetch(`http://127.0.0.1:8000/noticias/recentes`)
+  const res = await fetch(`http://127.0.0.1:8000/noticias/recentes`, { cache: 'no-store' })
   return res.json()
 }
 
@@ -22,32 +21,34 @@ export default async function Home() {
   const enterpriseData = getEnterprise()
   const [enterprise] = await Promise.all([enterpriseData])
 
+  const enterpriseSorted = enterprise.sort(function(a, b){return b.score -a.score});
   const newsData = getNews()
   const [news] = await Promise.all([newsData])
-/* 
-  const router = useRouter(); */
 
 
   return (
     <main className='flex min-h-screen font-poppins bg-white '>
 
       
-      <div>
+      <div className="">
         {/* Notícia principal - Início */}
-        <div className="h-[25rem]">
-          <div className={`relative h-96 w-[94.45rem] -inset-y-2 z-0`}>
-            <Image src="/home/home_image.png" fill />
-          </div>  
+        <Link href={`news/${news[0].id}`}>
+          <div className="h-[25rem] hover:cursor-pointer">
+            <div className={`relative h-96 w-[94.45rem]  z-0`}>
+              <div className="z-10 absolute bg-black bg-opacity-30 h-96 w-[94.45rem]"></div>
+              <Image src={news[0].fst_image} fill />
+            </div>  
 
-          <div className=" relative -inset-y-32 z-10 px-80 text-white font-bold text-[2rem]">
-            <div>
-              {news[0].title}
-            </div>
-            <div className="text-[1rem] font-bold">
-              {news[0].subtitle}
+            <div className=" relative -inset-y-48 z-10 px-80 text-white font-bold text-[2rem]">
+              <div>
+                {news[0].title}
+              </div>
+              <div className="text-[1rem] font-bold">
+                {news[0].subtitle}
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
         {/* Notícia principal - Fim */}
       
         <div className="flex flex-col ml-80">
@@ -58,21 +59,42 @@ export default async function Home() {
           </div>
           
           <div className="flex flex-row">
-            <Image
-              src={"/home/home_image2.png"}
-              width={300}
-              height={400}
-            />
-            <Image
-              src={"/home/home_image2.png"}
-              width={300}
-              height={400}
-            />
-            <Image
-              src={"/home/home_image2.png"}
-              width={300}
-              height={400}
-            />
+            <Link href={`news/${news[1].id}`}>
+            
+              <div className="w-[292px] h-[182px] flex items-end text-transparent hover:bg-orange-500 hover:bg-opacity-50 hover:text-white hover:text-opacity-100 hover:cursor-pointer z-10 absolute p-2">
+                {news[1].title}
+              </div>
+              <Image
+                src={news[1].fst_image}
+                width={300}
+                height={400}
+                className="w-[292px] h-[182px] mr-2"
+              />
+            </Link>
+
+            <Link href={`news/${news[2].id}`}>
+              <div className="w-[292px] h-[182px] inset-x-[620px] flex items-end text-transparent hover:bg-orange-500 hover:bg-opacity-50 hover:text-white hover:text-opacity-100 z-10 absolute p-2 ">
+                {news[2].title}
+              </div>
+              <Image
+                src={news[2].fst_image}
+                width={300}
+                height={400}
+                className="w-[292px] h-[182px] mr-2"
+              />
+            </Link>
+
+            <Link href={`news/${news[3].id}`}>
+              <div className="w-[292px] h-[182px] inset-x-[920px] flex items-end text-transparent hover:bg-orange-500 hover:bg-opacity-50 hover:text-white hover:text-opacity-100 z-10 absolute p-2">
+                {news[3].title}
+              </div>
+              <Image
+                src={news[3].fst_image}
+                width={300}
+                height={400}
+                className="w-[292px] h-[182px]"
+              />
+            </Link>
           </div>
           {/* Mais notícias - Fim */}
 
@@ -86,9 +108,9 @@ export default async function Home() {
             Empresas com maior Score de Segurança
           </div>
 
-          <CardEnterprise enterprise={enterprise[0]} />
+          <CardEnterprise enterprise={enterpriseSorted[0]} />
 
-          <CardEnterprise enterprise={enterprise[1]} />
+          <CardEnterprise enterprise={enterpriseSorted[1]} />
 
           <div className='flex justify-center w-[56rem] mb-10'>
             <Link href={'/enterprise'}>
