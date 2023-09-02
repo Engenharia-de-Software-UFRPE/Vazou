@@ -11,15 +11,8 @@ Com o Python 3.10 instalado e corretamente funcionando na sua PATH, faça:
 pip install -r requirements.txt
 ```
 Após instaladas as dependências pela primeira vez, não será mais necessário instalá-las novamente, exceto se durante o decorrer do projeto uma nova dependência seja adicionada.
-### 2. Configurando o Banco de dados local
-Inicialmente, é necessário criar um banco de dados local do projeto em sua máquina. O framework Django consegue montar o banco de dados, logo crie seu BD executando os comandos:
-```
-python manage.py makemigrations vazou_app
-python manage.py migrate
-```
-> Sempre que você fizer alguma alteração nos modelos do Banco de Dados é necessário utilizar esses comandos, caso haja conflito use a flag ```--run-syncdb``` no comando migrate.
 
-### 3. Iniciando a aplicação web
+### 2. Iniciando a aplicação web
 Simples, rápido e fácil:
 ```
 python manage.py runserver
