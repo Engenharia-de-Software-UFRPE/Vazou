@@ -70,12 +70,26 @@ class DeleteUpdateNoticia(generics.RetrieveUpdateDestroyAPIView):
 def index(request):
     return HttpResponse("Hello, world. You're at the index.")
 
-class ListaDenuncia(generics.ListCreateAPIView):
+# class ListaDenuncia(generics.ListCreateAPIView):
+#     queryset = Denuncia.objects.all()
+#     serializer_class = DenunciaSerializer
+
+#     def get_object(self):
+#         return self.listaNot.get(pk=id)
+
+class ListaDenuncia(generics.ListAPIView):
     queryset = Denuncia.objects.all()
     serializer_class = DenunciaSerializer
 
-    def get_object(self):
-        return self.listaNot.get(pk=id)
+    def list(self, request):
+        req = self.request
+        comp = req.query_params.get('company', None)
+        queryset = Denuncia.objects.all()
+
+        if comp:
+            queryset = Denuncia.objects.filter(company = comp)
+        serializer = DenunciaSerializer(queryset, many = True)
+        return Response(serializer.data)
 
 class ListaAcoes(generics.ListAPIView):
     queryset = Acao.objects.all()
@@ -92,13 +106,23 @@ class ListaAcoes(generics.ListAPIView):
         return Response(serializer.data)
 
 class CreateAcao(generics.CreateAPIView):
-    querystet = Acao.objects.all()
+    queryset = Acao.objects.all()
     serializer_class = AcaoSerializer
     permission_classes = [IsAuthenticated]
    
 class DeleteUpdateAcao(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = AcaoSerializer
     queryset = Acao.objects.all()
+    permission_classes = [IsAuthenticated]
+
+class CreateDenuncia(generics.CreateAPIView):
+    queryset = Denuncia.objects.all()
+    serializer_class = DenunciaSerializer
+    permission_classes = [IsAuthenticated]
+
+class DeleteUpdateDenuncia(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = DenunciaSerializer
+    queryset = Denuncia.objects.all()
     permission_classes = [IsAuthenticated]
     
 @csrf_exempt

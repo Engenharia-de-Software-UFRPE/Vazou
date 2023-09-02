@@ -39,4 +39,10 @@ urlpatterns = [
     path('analistas/', views.AnalistaList.as_view(), name='analista-list'),
     path('analistas/criar', views.CreateAnalista.as_view(), name='analista-create'),
     path('analistas/<int:pk>', views.DeleteUpdateAnalista.as_view(), name="DeleteUpdateAnalista"),
+
+    #URLs de Denuncias
+    path('denuncias/', views.ListaDenuncia.as_view(), name='ListaDenuncia'),
+    path('denuncia/criar', views.CreateDenuncia.as_view(), name='CreateDenuncia'),
+    path('denuncia/<int:pk>', views.DeleteUpdateDenuncia.as_view(), name="DeleteUpdateDenuncia"),
+    path('denuncia/recentes', views.ListaDenuncia.as_view(), name='listar_denuncias_recentes'),
 ]
