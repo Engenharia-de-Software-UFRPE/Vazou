@@ -1,3 +1,5 @@
+'use client' 
+
 import { useState } from 'react'
 import InputDenuncia from './input_den'
 import Button from './button'
