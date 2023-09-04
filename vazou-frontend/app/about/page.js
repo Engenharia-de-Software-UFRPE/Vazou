@@ -8,7 +8,7 @@ export default function About(){
         <div  className='flex flex-col min-h-screen font-poppins'>
 
             <div className="flex flex-col  h-[25rem]">
-                <div className={`relative h-96 w-[94.9rem] z-0 items-center`}>
+                <div className={`relative h-[300rem] w-[94.9rem] z-0 items-center`}>
                     <Image src="/about/BannerSobre.png" fill />
                 </div>  
 
@@ -56,17 +56,17 @@ export default function About(){
                         <div className='flex flex-col mx-6 justify-center'>
                             <Image
                                 className='shadow-2xl my-2'
-                                src={'/about/time/Gabrielyicon.png'}
+                                src={'/about/time/Gabyicon.png'}
                                 width={120}
                                 height={120}
                             />
-                            <p className='mx-auto text-sm'>Maria Gabriely</p>
+                            <p className='mx-auto text-sm'>Maria Gabrielly</p>
                         </div>
 
                         <div className='flex flex-col mx-6 justify-center'>
                             <Image
                                 className='shadow-2xl my-2'
-                                src={'/about/time/Camileicon.png'}
+                                src={'/about/time/milhareiroicon.png'}
                                 width={120}
                                 height={120}
                             />
@@ -110,7 +110,7 @@ export default function About(){
                                 width={120}
                                 height={120}
                             />
-                            <p className='mx-auto text-sm'>Stella Názario</p>
+                            <p className='mx-auto text-sm'>Stella Nazário</p>
                         </div>
                         <div className='flex flex-col mx-6 justify-center'>
                             <Image
@@ -137,7 +137,7 @@ export default function About(){
             <div className='flex flex-row justify-center items-start min-w-full py-10 bg-orange-500'>
                 <div className='w-[300px] mr-12'>
                     <h2 className='text-2xl font-semibold mb-4'>Fale Conosco</h2>
-                    <p className='text-base  '>Lorem ipsum dolor sit amet consectetur. Congue nis l eu arcu quis habitasse pharetra. Eu molestie netus et rhoncus egestas. Vel sit semper eleifend sed imperdiet consectetur sollicitudin. Velit facilisi egestas cursus tellus eget eget ut et enim.</p> 
+                    <p className='text-base  '>Preencha o formulário ao lado com suas informações e comentários. Estamos ansiosos para conhecê-lo melhor e trabalhar juntos para podemos construir um mundo digital mais seguro e confiável!</p> 
                 </div>
                 <Form className=''/>
             </div>
