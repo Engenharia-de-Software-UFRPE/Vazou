@@ -3,13 +3,13 @@ import Image from "next/image";
 import Enterprise from '../components/Enterprise'
 import SearchBar from "../components/searchbar";
 
-export default function Company() {
+export default function editCompany() {
     return (
         <>
-            <div className='w-full bg-orange-500' style={{ minHeight: '26vh', padding: 30 }}>
+            <div className='w-full bg-orange-500' style={{ minHeight: '36vh', padding: 30 }}>
                 <SearchBar></SearchBar>
             </div>
-            <div className='flex min-h-screen flex-col w-3/5 mx-auto'>
+            <div className='flex min-h-screen flex-col w-3/5 mx-auto mt-5'>
                 <div className='flex justify-between items-center -mt-20 mb-20 self-center' style={{ minWidth: 650 }}>
                     <div className='flex justify-center items-center'>
                         <Image src={"/company/Tiktok.png"} className='border-4 border-white' width={156} height={156} />
