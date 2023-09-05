@@ -11,7 +11,7 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser, DjangoModel
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
-# Create your views here.
+#Views de Empresa
 class ListaEmpresa(generics.ListAPIView):
     queryset = Empresa.objects.all()
     serializer_class = EmpresaSerializer
@@ -26,7 +26,6 @@ class ListaEmpresa(generics.ListAPIView):
         serializer = EmpresaSerializer(queryset, many = True)
         return Response(serializer.data)
 
-
 class CreateEmpresa(generics.CreateAPIView):
     queryset = Empresa.objects.all()
     serializer_class = EmpresaSerializer
@@ -37,6 +36,13 @@ class DeleteUpdateEmpresa(generics.RetrieveUpdateDestroyAPIView):
     queryset = Empresa.objects.all()
     permission_classes = [IsAuthenticated]
 
+class EmpresaDetail(generics.RetrieveAPIView):
+    queryset = Empresa.objects.all()
+    serializer_class = EmpresaSerializer
+
+
+
+#Views de Notícia
 class ListaNoticia(generics.ListAPIView):
     serializer_class = NoticiaSerializer
 
@@ -67,16 +73,18 @@ class DeleteUpdateNoticia(generics.RetrieveUpdateDestroyAPIView):
     queryset = Noticia.objects.all()
     permission_classes = [IsAuthenticated]
 
+class NoticiaDetail(generics.RetrieveAPIView):
+    queryset = Noticia.objects.all()
+    serializer_class = NoticiaSerializer
+
+
+#Index
 def index(request):
     return HttpResponse("Hello, world. You're at the index.")
 
-# class ListaDenuncia(generics.ListCreateAPIView):
-#     queryset = Denuncia.objects.all()
-#     serializer_class = DenunciaSerializer
 
-#     def get_object(self):
-#         return self.listaNot.get(pk=id)
 
+#Views de Denuncia
 class ListaDenuncia(generics.ListAPIView):
     queryset = Denuncia.objects.all()
     serializer_class = DenunciaSerializer
@@ -91,6 +99,23 @@ class ListaDenuncia(generics.ListAPIView):
         serializer = DenunciaSerializer(queryset, many = True)
         return Response(serializer.data)
 
+class CreateDenuncia(generics.CreateAPIView):
+    queryset = Denuncia.objects.all()
+    serializer_class = DenunciaSerializer
+    permission_classes = [IsAuthenticated]
+
+class DeleteUpdateDenuncia(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = DenunciaSerializer
+    queryset = Denuncia.objects.all()
+    permission_classes = [IsAuthenticated]
+
+class DenunciaDetail(generics.RetrieveAPIView):
+    queryset = Denuncia.objects.all()
+    serializer_class = DenunciaSerializer
+
+
+
+#Views de Ação
 class ListaAcoes(generics.ListAPIView):
     queryset = Acao.objects.all()
     serializer_class = AcaoSerializer
@@ -115,15 +140,11 @@ class DeleteUpdateAcao(generics.RetrieveUpdateDestroyAPIView):
     queryset = Acao.objects.all()
     permission_classes = [IsAuthenticated]
 
-class CreateDenuncia(generics.CreateAPIView):
-    queryset = Denuncia.objects.all()
-    serializer_class = DenunciaSerializer
-    permission_classes = [IsAuthenticated]
+class AcaoDetail(generics.RetrieveAPIView):
+    queryset = Acao.objects.all()
+    serializer_class = AcaoSerializer
 
-class DeleteUpdateDenuncia(generics.RetrieveUpdateDestroyAPIView):
-    serializer_class = DenunciaSerializer
-    queryset = Denuncia.objects.all()
-    permission_classes = [IsAuthenticated]
+
     
 @csrf_exempt
 def rec_report(request):
@@ -157,6 +178,9 @@ def send_email(request):
 
     return JsonResponse({'error': 'Método não permitido.'}, status=405)
 
+
+
+#Views de Analista
 class AnalistaList(generics.ListAPIView):
     queryset = Analista.objects.all()
     serializer_class = AnalistaSerializer
@@ -171,3 +195,7 @@ class DeleteUpdateAnalista(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = AnalistaSerializer
     queryset = Analista.objects.all()
     permission_classes = [DjangoModelPermissions]
+
+class AnalistaDetail(generics.RetrieveAPIView):
+    queryset = Analista.objects.all()
+    serializer_class = AnalistaSerializer

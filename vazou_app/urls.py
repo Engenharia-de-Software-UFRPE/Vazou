@@ -12,17 +12,20 @@ urlpatterns = [
     path('empresas/', views.ListaEmpresa.as_view(), name='ListaEmpresa'),
     path('empresas/criar', views.CreateEmpresa.as_view(), name='CreateEmpresa'),
     path('empresas/<int:pk>', views.DeleteUpdateEmpresa.as_view(), name='DeleteUpdateEmpresa'),
+    path('empresas/get/<int:pk>', views.EmpresaDetail.as_view(), name='GetEmpresa'),
 
     #URLs de Ações
     path('acoes/', views.ListaAcoes.as_view(), name='ListaAcoes'),
     path('acoes/criar', views.CreateAcao.as_view(), name='CreateAcao'),
     path('acoes/<int:pk>', views.DeleteUpdateAcao.as_view(), name="DeleteUpdateAcao"),
+    path('acoes/get/<int:pk>', views.AcaoDetail.as_view(), name='GetAção'),
 
     #URLs de Notícias
     path('noticias/', views.ListaNoticia.as_view(), name='ListaNoticia'),
     path('noticias/criar', views.CreateNoticia.as_view(), name='CreateNoticia'),
     path('noticias/<int:pk>', views.DeleteUpdateNoticia.as_view(), name='UpdateNoticia'),
     path('noticias/recentes', views.ListaNoticia.as_view(), name='listar_noticias_recentes'),
+    path('noticias/get/<int:pk>', views.NoticiaDetail.as_view(), name='GetNoticia'),
 
     
     path('api-auth/', include('rest_framework.urls')),
@@ -39,10 +42,12 @@ urlpatterns = [
     path('analistas/', views.AnalistaList.as_view(), name='analista-list'),
     path('analistas/criar', views.CreateAnalista.as_view(), name='analista-create'),
     path('analistas/<int:pk>', views.DeleteUpdateAnalista.as_view(), name="DeleteUpdateAnalista"),
+    path('analistas/get/<int:pk>', views.AnalistaDetail.as_view(), name='GetAnalista'),
 
     #URLs de Denuncias
     path('denuncias/', views.ListaDenuncia.as_view(), name='ListaDenuncia'),
-    path('denuncia/criar', views.CreateDenuncia.as_view(), name='CreateDenuncia'),
-    path('denuncia/<int:pk>', views.DeleteUpdateDenuncia.as_view(), name="DeleteUpdateDenuncia"),
-    path('denuncia/recentes', views.ListaDenuncia.as_view(), name='listar_denuncias_recentes'),
+    path('denuncias/criar', views.CreateDenuncia.as_view(), name='CreateDenuncia'),
+    path('denuncias/<int:pk>', views.DeleteUpdateDenuncia.as_view(), name="DeleteUpdateDenuncia"),
+    path('denuncias/recentes', views.ListaDenuncia.as_view(), name='listar_denuncias_recentes'),
+    path('denuncias/get/<int:pk>', views.DenunciaDetail.as_view(), name='GetDenuncia')
 ]
