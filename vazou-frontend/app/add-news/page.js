@@ -29,7 +29,7 @@ export default function Anews(){
 
     return (     
 
-        <div className='flex flex-col w-1/2 mx-auto font-poppins'>
+        <div className='flex flex-col w-1/2 mx-auto font-poppins '>
 
             
         <input className=' p-2 w-[928px] h-[36px] border-[2px] bg-white rounded shadow mb-6 mt-20 border-black rounded' type="text" placeholder="Título" value={newsInput.title} onChange={(e) => handleChange(e.target.value, "title")}/>
@@ -45,8 +45,18 @@ export default function Anews(){
              )})}
         </select>
 
-        <input className=' p-2 w-[284px] h-[46px] border-[2px] bg-white rounded mb-6 shadow-md block text-sm  cursor-pointer ' type="file" placeholder="Adicionar imagem de capa" onChange={(e) => handleChange(e.target.value, "capa")}/>
-        <input className=' p-2 w-[335px] h-[46px] border-[2px] bg-white rounded mb-6 shadow-md block text-sm cursor-pointer' type="file" placeholder="Adicionar imagem: corpo de texto" onChange={(e) => handleChange(e.target.value, "textBody")}/>
+        <label htmlFor="image-cover" className="flex items-center gap-2 p-2 w-fit border-[2px] font-semibold bg-white rounded mb-6 shadow-md text-sm cursor-pointer">
+        <Image src={"/photo_add_icon.svg"} width={30} height={26} />
+         Adicionar imagem de capa
+        </label>
+        <input className='hidden' id="image-cover" type="file" onChange={(e) => handleChange(e.target.value, "capa")} />
+
+        <label htmlFor="image-body" className="flex items-center gap-2 p-2 w-fit border-[2px] font-semibold bg-white rounded mb-6 shadow-md text-sm cursor-pointer">
+        <Image src={"/photo_add_icon.svg"} width={30} height={26} />
+        Adicionar imagem: corpo de texto
+        </label>
+        <input className='hidden' id="image-body" type="file" onChange={(e) => handleChange(e.target.value, "capa")} />
+
 
           <div className='flex justify-center w-75 mb-10'>
             <Button onClickFunction={() => submitNews()} backgroundColor={'bg-orange-500 w-100'}>
