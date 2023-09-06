@@ -32,17 +32,12 @@ class ListaEmpresa(generics.ListAPIView):
 class CreateEmpresa(generics.CreateAPIView):
     queryset = Empresa.objects.all()
     serializer_class = EmpresaSerializer
-    permission_classes = [DjangoModelPermissions] 
+    #permission_classes = [DjangoModelPermissions] 
 
 class DeleteUpdateEmpresa(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = EmpresaSerializer
     queryset = Empresa.objects.all()
-    permission_classes = [IsAuthenticated]
-
-
-
-
-
+    #permission_classes = [IsAuthenticated]
 
 #Views de Notícia
 class ListaNoticia(generics.ListAPIView):
@@ -71,19 +66,17 @@ class ListaNoticia(generics.ListAPIView):
 class CreateNoticia(generics.CreateAPIView):
     queryset = Noticia.objects.all()
     serializer_class = NoticiaSerializer
-    permission_classes = [IsAuthenticated]
+    #permission_classes = [IsAuthenticated]
 
 class DeleteUpdateNoticia(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = NoticiaSerializer
     queryset = Noticia.objects.all()
-    permission_classes = [IsAuthenticated]
-
+    #permission_classes = [IsAuthenticated]
 
 
 #Index
 def index(request):
     return HttpResponse("Hello, world. You're at the index.")
-
 
 
 #Views de Denuncia
@@ -107,12 +100,12 @@ class ListaDenuncia(generics.ListAPIView):
 class CreateDenuncia(generics.CreateAPIView):
     queryset = Denuncia.objects.all()
     serializer_class = DenunciaSerializer
-    permission_classes = [IsAuthenticated]
+    #permission_classes = [IsAuthenticated]
 
 class DeleteUpdateDenuncia(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = DenunciaSerializer
     queryset = Denuncia.objects.all()
-    permission_classes = [IsAuthenticated]
+    #permission_classes = [IsAuthenticated]
 
 
 
