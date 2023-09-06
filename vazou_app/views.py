@@ -19,10 +19,13 @@ class ListaEmpresa(generics.ListAPIView):
     def list(self, request):
         req = self.request
         categ = req.query_params.get('categoria', None)
+        ident = req.query_params.get('id', None)
         queryset = Empresa.objects.all()
 
         if categ:
             queryset = Empresa.objects.filter(categoria = categ)
+        if ident:
+            queryset = Empresa.objects.filter(id = ident)
         serializer = EmpresaSerializer(queryset, many = True)
         return Response(serializer.data)
 
@@ -36,9 +39,8 @@ class DeleteUpdateEmpresa(generics.RetrieveUpdateDestroyAPIView):
     queryset = Empresa.objects.all()
     permission_classes = [IsAuthenticated]
 
-class EmpresaDetail(generics.RetrieveAPIView):
-    queryset = Empresa.objects.all()
-    serializer_class = EmpresaSerializer
+
+
 
 
 
@@ -49,10 +51,13 @@ class ListaNoticia(generics.ListAPIView):
     def list(self, request):
         req = self.request
         comp = req.query_params.get('company', None)
+        ident = req.query_params.get('id', None)
         queryset = Noticia.objects.all()
 
         if comp:
             queryset = Noticia.objects.filter(company = comp)
+        if ident:
+            queryset = Noticia.objects.filter(id = ident)
         serializer = NoticiaSerializer(queryset, many = True)
         return Response(serializer.data)
     
@@ -73,9 +78,6 @@ class DeleteUpdateNoticia(generics.RetrieveUpdateDestroyAPIView):
     queryset = Noticia.objects.all()
     permission_classes = [IsAuthenticated]
 
-class NoticiaDetail(generics.RetrieveAPIView):
-    queryset = Noticia.objects.all()
-    serializer_class = NoticiaSerializer
 
 
 #Index
@@ -92,10 +94,13 @@ class ListaDenuncia(generics.ListAPIView):
     def list(self, request):
         req = self.request
         comp = req.query_params.get('company', None)
+        ident = req.query_params.get('id', None)
         queryset = Denuncia.objects.all()
 
         if comp:
             queryset = Denuncia.objects.filter(company = comp)
+        if ident:
+            queryset = Denuncia.objects.filter(id = ident)
         serializer = DenunciaSerializer(queryset, many = True)
         return Response(serializer.data)
 
@@ -109,9 +114,6 @@ class DeleteUpdateDenuncia(generics.RetrieveUpdateDestroyAPIView):
     queryset = Denuncia.objects.all()
     permission_classes = [IsAuthenticated]
 
-class DenunciaDetail(generics.RetrieveAPIView):
-    queryset = Denuncia.objects.all()
-    serializer_class = DenunciaSerializer
 
 
 
@@ -123,10 +125,13 @@ class ListaAcoes(generics.ListAPIView):
     def list(self, request):
         req = self.request
         comp = req.query_params.get('company', None)
+        ident = req.query_params.get('id', None)
         queryset = Acao.objects.all()
 
         if comp:
             queryset = Acao.objects.filter(company = comp)
+        if ident:
+            queryset = Acao.objects.filter(id = ident)
         serializer = AcaoSerializer(queryset, many = True)
         return Response(serializer.data)
 
@@ -140,9 +145,6 @@ class DeleteUpdateAcao(generics.RetrieveUpdateDestroyAPIView):
     queryset = Acao.objects.all()
     permission_classes = [IsAuthenticated]
 
-class AcaoDetail(generics.RetrieveAPIView):
-    queryset = Acao.objects.all()
-    serializer_class = AcaoSerializer
 
 
     
@@ -187,7 +189,7 @@ class AnalistaList(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
 
 class CreateAnalista(generics.CreateAPIView):
-    querystet = Analista.objects.all()
+    queryset = Analista.objects.all()
     serializer_class = AnalistaSerializer
     permission_classes = [DjangoModelPermissions]
 
