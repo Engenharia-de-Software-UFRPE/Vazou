@@ -1,10 +1,34 @@
 
+import EnterpriseNews from "@/app/components/enterpriseNew"
 import Image from "next/image"
 
-export default function News() {
+async function getNews(id) {
+  const res = await fetch(`http://127.0.0.1:8000/noticias?id=${id}`, { cache: 'no-store' })
+  return res.json()
+}
 
+async function getRecentNews(id) {
+  const res = await fetch(`http://127.0.0.1:8000/noticias/recentes`, { cache: 'no-store' })
+  return res.json()
+}
 
+async function getEnterprise(id) {
+  const res = await fetch(`http://127.0.0.1:8000/empresas?id=${id}`,{ cache: 'no-store' })
+  return res.json()
+}
 
+export default async function News({params}) {
+
+  const newsData = getNews(params.id);
+  const [news] = await Promise.all([newsData]);
+
+  const enterpriseData = getEnterprise(news[0].company);
+  const [enterprise] = await Promise.all([enterpriseData]);
+
+  const recentNewsData = getRecentNews()
+  const [recentNews] = await Promise.all([recentNewsData])
+
+  const date = new Date(news[0].creation_date);
 
   return (
     <main className='flex min-h-screen font-poppins bg-white'>
@@ -13,13 +37,14 @@ export default function News() {
       <div>
         {/* Notícia principal - Início */}
         <div className="h-[25rem]">
-          <div className={`relative h-96 w-[94.45rem] -inset-y-2 z-0`}>
-            <Image src="/home/noticia_principal.png" fill />
+          <div className={`relative h-96 w-[94.45rem] z-0`}>
+            <div className="z-10 absolute bg-black bg-opacity-30 h-96 w-[94.45rem]"></div>
+            <Image src={news[0].fst_image} fill />
           </div>  
 
-          <div className=" relative -inset-y-40 z-10 px-80 text-white font-bold text-[3rem]">
+          <div className=" relative -inset-y-40 z-10 px-80 text-white font-bold text-[2rem]">
             <div>
-            Lorem ipsum dolor sit amet consectetur.
+              {news[0].title}
             </div>
           </div>
         </div>
@@ -29,16 +54,16 @@ export default function News() {
 
           {/* Subtítulo - Inicio */}
           <div className="text-black-500 text-lg font-extrabold mb-4">
-          Lorem ipsum dolor sit amet consectetur. Gravida sapien montes eget viverra cursus duis neque. Velit ultrices eget netus erat mauris ut ultricies. 
+            {news[0].subtitle}
           </div>
 
           <div className="text-black-500 text-sm font-extralight mb-4">
-          dd/mm/aaaa 
+            {date.toLocaleDateString("pt-BR")}
           </div>
           
           <div>
             <Image
-              src={"/home/news_tiktok.png"}
+              src={enterprise[0].perfil_image}
               width={68}
               height={68}
             />
@@ -51,7 +76,7 @@ export default function News() {
 
           <div className='text-sm text-justify mb-3 first-letter:float-left first-letter:text-9xl first-letter:font-poppins
           first-letter:font-extrabold first-letter:text-orange-500'>
-            Lorem ipsum dolor sit amet consectetur. Tristique turpis faucibus vestibulum potenti sit magna scelerisque. Faucibus euismod accumsan vehicula laoreet ut. Massa morbi quam in tincidunt diam at. Tempus et lectus ac at ac varius eget. Mattis dui turpis ultricies quam nisl molestie. Vivamus lobortis semper ut dui quis nulla est. Viverra diam feugiat viverra pellentesque in. Amet cras in erat mauris condimentum felis fringilla eleifend. Phasellus netus cursus tempus justo ut eget viverra.
+            {news[0].text}
           </div>
 
           <div className='text-sm text-justify mb-3'>
@@ -71,7 +96,7 @@ export default function News() {
 
           <div className='mx-auto'>
                 <Image
-                    src={"/home/news_foto2.png"}
+                    src={news[0].snd_image}
                     width={735}
                     height={385}
                 />
@@ -107,8 +132,10 @@ export default function News() {
                 Veja também
           </div>
           
-          <div className="flex flex-row">
-            <Image
+          <div className="flex flex-row ">
+            <EnterpriseNews news={recentNews[0]} />
+            <EnterpriseNews news={recentNews[1]}/>
+            {/* <Image
               src={"/home/news_vejatbm1.png"}
               width={632}
               height={406}
@@ -122,7 +149,7 @@ export default function News() {
               src={"/home/news_vejatbm3.png"}
               width={632}
               height={406}
-            />
+            /> */}
           </div>
 
           <div className="mt-20 ">

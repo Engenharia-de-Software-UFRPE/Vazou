@@ -5,7 +5,7 @@ import rankingName from "@/func/rankingName";
 
 
 async function getEnterprise(id) {
-    const res = await fetch(`http://127.0.0.1:8000/empresas/get/${id}`, { cache: 'no-store' })
+    const res = await fetch(`http://127.0.0.1:8000/empresas?id=${id}`, { cache: 'no-store' })
     return res.json()
 }
 
@@ -24,7 +24,6 @@ export default async function Enterprise({ params }){
     const newsData = getNews(params.id)
     const [news] = await Promise.all([newsData]);
 
-
     return (
         <>
             <div className= 'w-full bg-orange-500' style={{minHeight: '26vh', padding: 30}}>
@@ -33,22 +32,22 @@ export default async function Enterprise({ params }){
             <div className='flex min-h-screen flex-col w-3/5 mx-auto'>
                 <div className= 'flex justify-between items-center -mt-20 mb-20 self-center'style={{minWidth: 650}}>
                     <div className= 'flex justify-center items-center'>
-                    <Image src={`/images/Empresa/${enterprise.tradeName.toLowerCase()}.png`} className= 'border-4 border-white' width={156}  height={156}/>    
+                    <Image src={enterprise[0].perfil_image} className= 'border-4 border-white' width={156}  height={156}/>    
                         <div className="font-poppins text-white text-4xl font-extrabold self-start ml-4 mt-4">
                             {enterprise.tradeName}
                         </div>
                     </div>
                     
                     <div className= 'flex gap-4 self-center'>
-                    <Image className={rankingName(enterprise.score) == "Danger" ? "": "opacity-30"} src={"/ranking_icons/Danger.png"} width={48} height={48} />
-                    <Image className={rankingName(enterprise.score) == "Alert" ? "": "opacity-30"}  src={"/ranking_icons/Alert.png"} width={48} height={48}/>
-                    <Image className={rankingName(enterprise.score) == "Atention" ? "": "opacity-30"}  src={"/ranking_icons/Atention.png"} width={48}  height={48}/>
-                    <Image className={rankingName(enterprise.score) == "Great" ? "": "opacity-30"}  src={"/ranking_icons/Great.png"}  width={48} height={48}/>
+                    <Image className={rankingName(enterprise[0].score) == "Danger" ? "": "opacity-30"} src={"/ranking_icons/Danger.png"} width={48} height={48} />
+                    <Image className={rankingName(enterprise[0].score) == "Alert" ? "": "opacity-30"}  src={"/ranking_icons/Alert.png"} width={48} height={48}/>
+                    <Image className={rankingName(enterprise[0].score) == "Atention" ? "": "opacity-30"}  src={"/ranking_icons/Atention.png"} width={48}  height={48}/>
+                    <Image className={rankingName(enterprise[0].score) == "Great" ? "": "opacity-30"}  src={"/ranking_icons/Great.png"}  width={48} height={48}/>
                     </div>
                 </div>
 
                 <p>
-                    {enterprise.abstract}
+                    {enterprise[0].abstract}
                 </p>
 
                 <div className="flex flex-col items-center">
